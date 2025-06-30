@@ -16,7 +16,7 @@ export const Projects = () => {
                   }
                 >
                   <h2>Projects</h2>
-                  
+
                   <Tab.Container id="projects-tabs" defaultActiveKey="first">
                     <Nav
                       variant="pills"
@@ -24,7 +24,7 @@ export const Projects = () => {
                       id="pills-tab"
                     >
                       <Nav.Item>
-                        <Nav.Link eventKey="first">Tab 1</Nav.Link>
+                        <Nav.Link eventKey="first">React js</Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
                         <Nav.Link eventKey="second">Tab 2</Nav.Link>
@@ -95,6 +95,31 @@ export const Projects = () => {
                               </p>
                               <strong>Tech:</strong> React, JokeAPI
                               (https://v2.jokeapi.dev)
+                            </div>
+                          </Col>
+                          <Col md={4}>
+                            <div className="project-box">
+                              <h4>Gemini Clone</h4>
+                              <p>
+                                An AI chatbot clone inspired by Google Gemini.
+                                It interacts with users, provides responses
+                                using Google’s Generative Language API, and
+                                simulates typing effects.
+                              </p>
+                              <strong>Tech:</strong> React, Vite, Gemini API
+                              (Google PaLM/Gemma), CSS
+                            </div>
+                          </Col>
+                          <Col md={4}>
+                            <div className="project-box">
+                              <h4>News App</h4>
+                              <p>
+                                Displays the latest news articles by fetching
+                                data from NewsAPI, categorized by topics like
+                                sports, business, and technology.
+                              </p>
+                              <strong>Tech:</strong> React, NewsAPI
+                              (https://newsapi.org), Bootstrap
                             </div>
                           </Col>
                         </Row>
