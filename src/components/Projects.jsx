@@ -27,7 +27,7 @@ export const Projects = () => {
                         <Nav.Link eventKey="first">React js</Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
-                        <Nav.Link eventKey="second">Tab 2</Nav.Link>
+                        <Nav.Link eventKey="second">Mobile app</Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
                         <Nav.Link eventKey="third">Tab 3</Nav.Link>
@@ -125,13 +125,17 @@ export const Projects = () => {
                         </Row>
                       </Tab.Pane>
                       <Tab.Pane eventKey="second">
-                        <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Cumque quam, quod neque provident velit, rem
-                          explicabo excepturi id illo molestiae blanditiis,
-                          eligendi dicta officiis asperiores delectus quasi
-                          inventore debitis quo.
-                        </p>
+                        <Col md={4}>
+                            <div className="project-box">
+                              <h4>Medicine Remainder</h4>
+                              <p>
+                                A mobile app that helps users schedule and get reminders for taking their medicines on time. Designed for daily health management and medication tracking.
+                                made it to for my beloved parents .                              
+                              </p>
+                              <strong>Tech:</strong> React, Capacitor, Local Notifications
+                              
+                            </div>
+                            </Col>
                       </Tab.Pane>
                       <Tab.Pane eventKey="third">
                         <p>
