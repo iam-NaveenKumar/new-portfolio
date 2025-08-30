@@ -136,6 +136,18 @@ export const Projects = () => {
                               
                             </div>
                             </Col>
+                            <Col md={4}>
+                              <div className="project-box">
+                              <h4>FoodlLens</h4>
+                              <p>
+                                A mobile app that helps users identify food items and provides nutritional 
+    insights . Designed to promote healthy 
+    eating habits and make food tracking effortless.                             
+                              </p>
+                              <strong>Tech:</strong> React, Capacitor, Local Notifications
+                              
+                            </div>
+                            </Col>
                       </Tab.Pane>
                       <Tab.Pane eventKey="third">
                         <p>
