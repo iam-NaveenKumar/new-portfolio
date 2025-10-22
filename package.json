@@ -10,13 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@netlify/functions": "^5.0.0",
     "animate.css": "^4.1.1",
     "bootstrap": "^5.3.6",
     "bootstrap-icons": "^1.13.1",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
-    "nodemailer": "^7.0.3",
+    "nodemailer": "^7.0.9",
     "react": "^19.1.0",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.1.0",
