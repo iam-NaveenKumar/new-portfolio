@@ -324,15 +324,54 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
     line-height: 1.5em;
     margin: 14px 0 75px 0;
 }
-.skill-slider {
-  width: 80%;
-  margin: 0 auto;
-  position: relative;
+
+.skill-category-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 30px 20px;
+  transition: 0.3s ease-in-out;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  margin: 10px;
 }
-.skill-slider .item  {
-  width: 50%;
-  margin: 0 auto 15px auto;
+
+.skill-category-card:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
+
+.skill-category-card h3 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, #fff, #b8b8b8); /* Gradient text */
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.skill-tag {
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 50px; /* Pill shape */
+  font-size: 16px;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: 0.3s ease;
+  display: inline-block;
+  margin: 5px;
+}
+
+.skill-tag:hover {
+  background: #fff; /* Invert on hover */
+  color: #AA367C; /* Match theme color */
+  border-color: #fff;
+  transform: scale(1.05);
+}
+
 .background-image-left {
   top: 28%;
   position: absolute;
