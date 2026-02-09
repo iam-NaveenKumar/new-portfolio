@@ -59,7 +59,7 @@ function Banner() {
                         <span className="tagline">Welcome to my Portfolio</span>
                         <h1>{`Hi I'm Naveen Kumar`} <br /> <span className="wrap">{text}</span>
                         </h1>
-                        <p>I am an IT student with a strong focus on Artificial Intelligence, Machine Learning, and Software Development. As an aspiring Fall 2025 intern, I am passionate about leveraging technology to solve real-world problems. I am dedicated to continuous learning and growth, with plans to graduate in 2027.</p>
+                        <p>Information Technology student focused on AI/ML systems, backend engineering, and application development. Hands-on experience designing AI-powered learning tools, API integrations, and hybrid cloud architectures. Interested in building scalable, cost-efficient intelligent software that solves practical problems. Graduating in 2027 and open to internship roles in AI, software engineering, or product development.</p>
                         <button onClick={() => console.log('connect')}>Let's Connect <BsArrowRightCircle /></button>
                     </div>
                     )}
