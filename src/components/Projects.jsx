@@ -165,8 +165,7 @@ export const Projects = () => {
                       </Tab.Pane>
                       <Tab.Pane eventKey="about">
                         <p>
-                          I am a passionate developer who loves building applications that solve real-world problems. 
-                          Check out my main projects for complex systems and mini projects for fun experiments!
+                          IT Student Pivoting to Software Engineering | Java, Web Development | Class of 2027
                         </p>
                       </Tab.Pane>
                     </Tab.Content>
