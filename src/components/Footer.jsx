@@ -10,11 +10,13 @@ export const Footer = () => {
       <Container>
         <Row className="align-items-center">
           <Col size={12} sm={6}>
-            <img
-              src={logo}
-              alt="Logo"
-              style={{ borderRadius: "50%", height: "4rem", width: "4rem",border:"1px solid white" }}
-            />
+            <a href="/" onClick={() => window.location.reload()}>
+              <img
+                src={logo}
+                alt="Logo"
+                style={{ borderRadius: "50%", height: "4rem", width: "4rem",border:"1px solid white", cursor: "pointer" }}
+              />
+            </a>
           </Col>
           <Col size={12} sm={6} className="text-center text-sm-end">
             <div className="social-icon">

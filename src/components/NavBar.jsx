@@ -33,7 +33,7 @@ function NavBar() {
   return (
     <Navbar expand="lg" className={scrolled ? "scrolled" : ""}>
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/" onClick={() => window.location.reload()}>
             <img src={logo} alt="LOGO" style={{overflow:"hidden",borderRadius:"50%",height:"4rem",width:"4rem",border:"1px solid #fff"}} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
