@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { BsArrowRightCircle } from "react-icons/bs";
-import headerImg from '../assets/img/header-img.svg';
+import myimg from '../assets/img/Naveen-port.png'
 import 'animate.css'
 import TrackVisibility from 'react-on-screen';
 
@@ -51,22 +51,21 @@ function Banner() {
         <section className="banner" id="home">
             <Container>
                 <Row className="align-items-center">
-                    <Col xs={12} md={6} xl={7}>
+                    <Col xs={7} md={6} xl={7}>
                     <TrackVisibility>
                     {({ isVisible }) => (
                     <div className={isVisible => isVisible ? "animate__animated animate__fadeIn" : ""}>
                 
                         <span className="tagline">Welcome to my Portfolio</span>
-                        <h1>{`Hi I'm Naveen Kumar`} <br /> <span className="wrap">{text}</span>
-                        </h1>
-                        <p>Information Technology student focused on AI/ML systems, backend engineering, and application development. Hands-on experience designing AI-powered learning tools, API integrations, and hybrid cloud architectures. Interested in building scalable, cost-efficient intelligent software that solves practical problems. Graduating in 2027 and open to internship roles in AI, software engineering, or product development.</p>
-                        <button onClick={() => console.log('connect')}>Let's Connect <BsArrowRightCircle /></button>
+                        <h1>{`Hi I'm Naveen Kumar `} <br></br><span className="wrap">{text}</span></h1>
+                        <p>Information Technology student focused on AI applications, backend engineering, and modern web development. Builds full-stack systems that integrate LLMs, APIs, and cloud databases, with an emphasis on modular architecture and practical software solutions.</p>
+                        <button onClick={() => console.log('connect')}>Connect <BsArrowRightCircle /></button>
                     </div>
                     )}
                     </TrackVisibility>
                     </Col>
-                    <Col xs={12} md={6} xl={5}>
-                        <img src={headerImg} alt="Banner Image" />
+                    <Col xs={5} md={6} xl={5}>
+                        <img src={myimg} alt="Banner Image" />
                     </Col>
                 
                     

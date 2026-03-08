@@ -1,23 +1,87 @@
 import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 import colorSharp2 from "../assets/img/color-sharp2.png";
-import TrackVisibility from "react-on-screen";
+
+const ProjectCard = ({ title, description, stack, status, link }) => {
+  return (
+    <div className="project-box">
+      <h4>{title}</h4>
+      {status && <span className="status">{status}</span>}
+      <p>{description}</p>
+      {stack && (
+        <p style={{ fontSize: "0.9rem", marginTop: "10px" }}>
+          <strong>Stack:</strong> {stack}
+        </p>
+      )}
+      {link && (
+        <a href={link} target="_blank" rel="noopener noreferrer" style={{ color: "white", textDecoration: "underline" }}>
+          Live Demo
+        </a>
+      )}
+    </div>
+  );
+};
 
 export const Projects = () => {
-  const mainProjects = [
+  const responsive = {
+    superLargeDesktop: { breakpoint: { max: 4000, min: 3000 }, items: 3 },
+    desktop: { breakpoint: { max: 3000, min: 1024 }, items: 3 },
+    tablet: { breakpoint: { max: 1024, min: 768 }, items: 2 },
+    mobile: { breakpoint: { max: 768, min: 0 }, items: 1 }
+  };
+
+  const projects = [
     {
       title: "AI-Powered Learning Tutor",
-      description: "Developing adaptive AI tutor generating lessons, quizzes, and summaries based on learner level. Focused on caching strategies and cost-efficient API workflows. Designed dynamic prompt structures to generate level-based explanations and quizzes.",
-      tech: "React, Flask, OpenAI API, TensorFlow",
-      imgUrl: "", // Assuming no image update requested, will leave blank or use placeholder if Card component expects it. 
-      // Wait, the original code didn't use a ProjectCard component with props, it hardcoded the HTML.
-      // I should stick to the existing pattern or introduce a ProjectCard component if it exists.
-      // Checking imports: `import { Container, Row, Col, Tab, Nav } from "react-bootstrap";`
-      // There was NO ProjectCard import in the original file I read.
-      // But looking at the original file content again...
-      // line 45: <div className="project-box"> ... </div>
-      // It seems it was hardcoded.
-      // I will reproduce the hardcoded structure to avoid breaking things if I don't have the CSS for a new component.
-    } 
+      description: "Adaptive AI tutor generating lessons, quizzes, and summaries based on learner level. Focused on caching and AI orchestration.",
+      stack: "React, Node.js, Firebase, Gemini 2.0, Llama 3.1",
+      status: "🔧 Undergoing Project",
+    },
+    {
+      title: "Anonymous Chat Web App",
+      description: "Real-time anonymous messaging platform with guest login and responsive UI. Optimized message rendering.",
+      stack: "React, Firebase",
+      link: "https://anonymouschat007.web.app/",
+    },
+    {
+      title: "Medicine Reminder App",
+      description: "Cross-platform mobile app with scheduled notifications and persistent reminder tracking using Capacitor.",
+      stack: "React, Capacitor, Local Notifications",
+    },
+  ];
+
+  const miniProjects = [
+    {
+      title: "Gemini Clone",
+      description: "AI chatbot clone inspired by Google Gemini using Google’s Generative Language API.",
+      stack: "React, Vite, Gemini API",
+    },
+    {
+      title: "Joke Generator App",
+      description: "Fetches and displays jokes using the JokeAPI for entertainment.",
+      stack: "React, JokeAPI",
+    },
+    {
+      title: "FoodLens",
+      description: "A mobile app that helps users identify food items and provides nutritional insights.",
+      stack: "React, Capacitor",
+    },
+    {
+      title: "Portfolio Website",
+      description: "A personal portfolio site to showcase projects, skills, and contact information.",
+      stack: "React, Bootstrap, Vite",
+    },
+    {
+      title: "News App",
+      description: "Displays the latest news articles by fetching data from NewsAPI.",
+      stack: "React, NewsAPI",
+    },
+    {
+      title: "AI Image Generator",
+      description: "Generates AI images from text prompts using Hugging Face models.",
+      stack: "React, Hugging Face API",
+    },
   ];
 
   return (
@@ -25,162 +89,58 @@ export const Projects = () => {
       <Container>
         <Row>
           <Col xs={12}>
-            <TrackVisibility>
-              {({ isVisible }) => (
-                <div
-                  className={
-                    isVisible ? "animate__animated animate__fadeIn" : ""
-                  }
-                >
-                  <h2>Projects</h2>
-                  <p>My recent work, featuring AI-powered applications, web development, and mobile apps.</p>
-                  <Tab.Container id="projects-tabs" defaultActiveKey="main">
-                    <Nav
-                      variant="pills"
-                      className="nav-pills mb-5 justify-content-center align-items-center"
-                      id="pills-tab"
+            <div>
+              <h2>Projects</h2>
+              <p>A selection of my recent works, ranging from complex full-stack applications to focused technical experiments.</p>
+              <Tab.Container id="projects-tabs" defaultActiveKey="first">
+                <Nav variant="pills" className="nav-pills mb-5 justify-content-center align-items-center" id="pills-tab">
+                  <Nav.Item>
+                    <Nav.Link eventKey="first" id="projects-tabs-tab-first">Main Projects</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="second" id="projects-tabs-tab-second">Mini Projects</Nav.Link>
+                  </Nav.Item>
+                </Nav>
+                <Tab.Content id="slideInUp">
+                  <Tab.Pane eventKey="first">
+                    <Carousel 
+                      responsive={responsive} 
+                      infinite={true} 
+                      autoPlay={true}
+                      autoPlaySpeed={3000}
+                      className="project-slider"
                     >
-                      <Nav.Item>
-                        <Nav.Link eventKey="main">Main Projects</Nav.Link>
-                      </Nav.Item>
-                      <Nav.Item>
-                        <Nav.Link eventKey="mini">Mini Projects</Nav.Link>
-                      </Nav.Item>
-                      <Nav.Item>
-                        <Nav.Link eventKey="about">About</Nav.Link>
-                      </Nav.Item>
-                    </Nav>
-                    <Tab.Content
-                      id="slideInUp"
-                      className={
-                        isVisible ? "animate__animated animate__slideInUp" : ""
-                      }
+                      {projects.map((project, index) => (
+                        <div key={index} className="px-2 h-100">
+                          <ProjectCard {...project} />
+                        </div>
+                      ))}
+                    </Carousel>
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="second">
+                    <Carousel 
+                      responsive={responsive} 
+                      infinite={true} 
+                      autoPlay={true}
+                      autoPlaySpeed={3000}
+                      className="project-slider"
                     >
-                      <Tab.Pane eventKey="main">
-                        <Row>
-                          <Col md={4}>
-                            <div className="project-box">
-                              <h4>AI-Powered Learning Tutor</h4>
-                              <span className="status">
-                                🔧 Undergoing Project
-                              </span>
-                              <p>
-                                Developing adaptive AI tutor generating lessons, quizzes, and summaries based on learner level.
-                                <br />
-                                Focused on caching strategies and cost-efficient API workflows.
-                                <br />
-                                Designed dynamic prompt structures to generate level-based explanations and quizzes.
-                              </p>
-                              <strong>Tech:</strong> React, Flask, OpenAI API, TensorFlow
-                            </div>
-                          </Col>
-                          <Col md={4}>
-                            <div className="project-box">
-                              <h4>Anonymous Chat Web Application</h4>
-                              <p>
-                                Built real-time anonymous messaging platform with guest login and responsive UI.
-                                <br />
-                                Optimized message rendering and state updates to maintain smooth real-time user interaction.
-                              </p>
-                              <strong>Tech:</strong> React, Firebase
-                              <br />
-                              <a href="https://anonymouschat007.web.app/" target="_blank" rel="noopener noreferrer" style={{ color: "white", textDecoration: "underline" }}>Live Demo</a>
-                            </div>
-                          </Col>
-                          <Col md={4}>
-                            <div className="project-box">
-                              <h4>Medicine Reminder Mobile App</h4>
-                              <p>
-                                Cross-platform mobile app with scheduled notifications and persistent reminder tracking.
-                                <br />
-                                Implemented local notifications using Capacitor plugins for scheduled alerts.
-                              </p>
-                              <strong>Tech:</strong> React, Capacitor, Local Notifications
-                            </div>
-                          </Col>
-                        </Row>
-                      </Tab.Pane>
-                      <Tab.Pane eventKey="mini">
-                        <Row>
-                          <Col md={4}>
-                            <div className="project-box">
-                              <h4>Gemini Clone (Chatbot)</h4>
-                              <p>
-                                An AI chatbot clone inspired by Google Gemini.
-                                It interacts with users, provides responses
-                                using Google’s Generative Language API.
-                              </p>
-                              <strong>Tech:</strong> React, Vite, Gemini API
-                            </div>
-                          </Col>
-                          <Col md={4}>
-                            <div className="project-box">
-                              <h4>Joke Generator App</h4>
-                              <p>
-                                Fetches and displays jokes using the JokeAPI for
-                                entertainment.
-                              </p>
-                              <strong>Tech:</strong> React, JokeAPI
-                            </div>
-                          </Col>
-                           <Col md={4}>
-                            <div className="project-box">
-                              <h4>FoodLens</h4>
-                              <p>
-                                A mobile app that helps users identify food items and provides nutritional insights.
-                              </p>
-                              <strong>Tech:</strong> React, Capacitor
-                            </div>
-                          </Col>
-                          <Col md={4}>
-                            <div className="project-box">
-                              <h4>Portfolio Website</h4>
-                              <p>
-                                A personal portfolio site to showcase projects,
-                                skills, and contact information.
-                              </p>
-                              <strong>Tech:</strong> React, Bootstrap, Vite
-                            </div>
-                          </Col>
-                          <Col md={4}>
-                            <div className="project-box">
-                              <h4>News App</h4>
-                              <p>
-                                Displays the latest news articles by fetching
-                                data from NewsAPI.
-                              </p>
-                              <strong>Tech:</strong> React, NewsAPI
-                            </div>
-                          </Col>
-                          <Col md={4}>
-                            <div className="project-box">
-                              <h4>AI Image Generator</h4>
-                              <p>
-                                Generates AI images from text prompts using Hugging Face models.
-                              </p>
-                              <strong>Tech:</strong> React, Hugging Face API
-                            </div>
-                          </Col>
-                        </Row>
-                      </Tab.Pane>
-                      <Tab.Pane eventKey="about">
-                        <p>
-                          IT Student Pivoting to Software Engineering | Java, Web Development | Class of 2027
-                        </p>
-                      </Tab.Pane>
-                    </Tab.Content>
-                  </Tab.Container>
-                </div>
-              )}
-            </TrackVisibility>
+                      {miniProjects.map((project, index) => (
+                        <div key={index} className="px-2 h-100">
+                          <ProjectCard {...project} />
+                        </div>
+                      ))}
+                    </Carousel>
+                  </Tab.Pane>
+                </Tab.Content>
+              </Tab.Container>
+            </div>
           </Col>
         </Row>
       </Container>
-      <img
-        className="background-image-right"
-        src={colorSharp2}
-        alt="Background"
-      />
+      <img className="background-image-right" src={colorSharp2} alt="Background" />
     </section>
   );
 };
+
+export default Projects;

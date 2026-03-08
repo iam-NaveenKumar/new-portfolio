@@ -1,4 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 import colorSharp from "../assets/img/color-sharp.png";
 
 function Skills() {
@@ -25,6 +27,25 @@ function Skills() {
     },
   ];
 
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 3
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1
+    }
+  };
+
   return (
     <section className="skill" id="skills">
       <Container>
@@ -35,9 +56,15 @@ function Skills() {
               <p>
                 A comprehensive showcase of my technical expertise across various domains.
               </p>
-              <Row className="skills-content justify-content-center">
+              <Carousel 
+                responsive={responsive} 
+                infinite={true} 
+                autoPlay={true}
+                autoPlaySpeed={3000}
+                className="skills-slider"
+              >
                 {skillsData.map((item, index) => (
-                  <Col md={4} sm={6} xs={12} key={index} className="mb-4">
+                  <div key={index} className="skill-category-card-wrapper">
                     <div className="skill-category-card h-100">
                       <h3>{item.category}</h3>
                       <div className="d-flex flex-wrap justify-content-center gap-2 mt-3">
@@ -48,9 +75,9 @@ function Skills() {
                         ))}
                       </div>
                     </div>
-                  </Col>
+                  </div>
                 ))}
-              </Row>
+              </Carousel>
             </div>
           </Col>
         </Row>
