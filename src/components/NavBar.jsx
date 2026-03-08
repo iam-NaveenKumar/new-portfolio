@@ -52,9 +52,11 @@ function NavBar() {
                 <a href="https://github.com/iam-NaveenKumar"><img src={navIcon2} alt="github" /></a>
                 <a href="https://www.instagram.com/_i.am.naveen_/"><img src={navIcon3} alt="instagram" /></a>
             </div>
-            <button className="vvd" onClick={() => console.log('connect')}>
-                <a href="#connect" style={{textDecoration:"none",color:"white"}}><span>Let's Connect</span></a>
-            </button>
+            <a href="/Naveen_Kumar_Resume.pdf" download="Naveen_Kumar_Resume.pdf" className="vvd-link">
+              <button className="vvd">
+                  <span>Download CV</span>
+              </button>
+            </a>
           </span>
         </Navbar.Collapse>
       </Container>

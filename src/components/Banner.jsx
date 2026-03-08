@@ -59,7 +59,7 @@ function Banner() {
                         <span className="tagline">Welcome to my Portfolio</span>
                         <h1>{`Hi I'm Naveen Kumar `} <br></br><span className="wrap">{text}</span></h1>
                         <p>Information Technology student focused on AI applications, backend engineering, and modern web development. Builds full-stack systems that integrate LLMs, APIs, and cloud databases, with an emphasis on modular architecture and practical software solutions.</p>
-                        <button onClick={() => console.log('connect')}>Connect <BsArrowRightCircle /></button>
+                        <button onClick={() => window.location.href='#connect'}> Let's Connect <BsArrowRightCircle /></button>
                     </div>
                     )}
                     </TrackVisibility>

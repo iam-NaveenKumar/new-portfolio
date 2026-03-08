@@ -185,6 +185,9 @@ span.navbar-text {
   overflow: hidden;
   border-radius: 5px;
 }
+.vvd-link {
+  text-decoration: none !important;
+}
 
 @media (max-width: 991px) {
   .navbar-collapse {
