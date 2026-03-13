@@ -12,6 +12,7 @@
   "dependencies": {
     "@netlify/functions": "^5.0.0",
     "@studio-freight/react-lenis": "^0.0.47",
+    "@vercel/analytics": "^2.0.1",
     "animate.css": "^4.1.1",
     "bootstrap": "^5.3.6",
     "bootstrap-icons": "^1.13.1",

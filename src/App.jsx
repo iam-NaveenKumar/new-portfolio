@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Analytics } from "@vercel/analytics/react"
 import NavBar from './components/NavBar';
 import Banner from './components/Banner';
 import Skills from './components/Skills';
@@ -66,6 +67,7 @@ function App() {
       <Footer />
       <Terminal setWeather={setActiveWeather} />
       <WeatherEffects type={activeWeather} />
+      <Analytics />
 
       {showBackToTop && (
         <motion.button
