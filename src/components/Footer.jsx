@@ -59,7 +59,7 @@ export const Footer = () => {
                   <img src={navIcon3} alt="Icon" />
                 </motion.a>
               </div>
-              <p style={{ marginTop: '20px', color: 'var(--text-muted)' }}>Copyright 2025. All Rights Reserved</p>
+              
             </Col>
           </Row>
         </motion.div>
