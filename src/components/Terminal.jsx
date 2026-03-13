@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Terminal = () => {
+const Terminal = ({ setWeather }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
   const [history, setHistory] = useState([
@@ -20,7 +20,7 @@ const Terminal = () => {
   }, [isOpen]);
 
   const commands = {
-    help: 'Commands: about, stack, systems, projects, cv, secret, clear, exit',
+    help: 'Commands: about, stack, systems, projects, cv, rain, snow, end, secret, clear, exit',
     about: 'Naveen Kumar — Engineering student focused on building AI-powered learning systems and production-ready web backends. Interested in system design, LLM integrations, and scalable application architecture.',
     stack: () => {
       document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' });
@@ -42,6 +42,20 @@ const Terminal = () => {
     contact: () => {
       document.getElementById('connect')?.scrollIntoView({ behavior: 'smooth' });
       return 'Instagram 🤫 : _i.am.naveen_ | Directing to contact section...';
+    },
+    rain: () => {
+      setWeather('rain');
+      setTimeout(() => setWeather(null), 15000);
+      return 'Rain initialized. Effect will last 15s. Type "end" to stop.';
+    },
+    snow: () => {
+      setWeather('snow');
+      setTimeout(() => setWeather(null), 15000);
+      return 'Snow initialized. Effect will last 15s. Type "end" to stop.';
+    },
+    end: () => {
+      setWeather(null);
+      return 'Weather effects cleared.';
     },
     clear: () => setHistory([]),
     secret: 'Hidden note.\n\nI am Naveen — a 20-year-old who genuinely enjoys technology and continuous learning.\nNaturally introverted, I spend most of my time building, experimenting, and trying to understand how real systems work.\n\nMy journey has not been perfectly planned. Studying in a place that did not fully match my expectations forced me to rely more on self-learning, online communities, and hands-on projects.\nThat struggle shaped my independence and persistence.\n\nI like helping people solve technical problems, sharing knowledge, and collaborating on ideas.\nIf you are curious about what I am building or want to discuss something interesting, type "contact".',

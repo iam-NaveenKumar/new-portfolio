@@ -1,12 +1,55 @@
-# React + Vite
+# Professional AI-Powered Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A high-performance, visually stunning portfolio for **Naveen Kumar**, built with modern web technologies and focused on a "minimalist tech" aesthetic.
 
-Currently, two official plugins are available:
+## 🚀 Live Demo
+[View Live Portfolio](https://your-live-link-here.com)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Key Features
 
-## Expanding the ESLint configuration
+### 💻 Interactive Developer CLI
+A custom-built React terminal emulator featuring command history, auto-focus, and integrated page controls.
+- **Commands**: 
+  - `help`: Lists all available commands.
+  - `about`: Professional summary and focus areas.
+  - `stack`: Displays tech expertise and scrolls to the Skills section.
+  - `projects`: Navigates directly to the Projects section.
+  - `cv` / `resume`: Triggers direct download of the latest PDF resume.
+  - `contact`: Scrolls to the contact form and displays social links.
+  - `clear`: Purges terminal history.
+  - `exit`: Closes the terminal window.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 🌦️ Immersive Weather Effects
+Dynamic, full-screen particle systems triggered directly by the CLI.
+- **Rain (`rain`)**: Realistic falling rain with glassmorphism interactions.
+- **Snow (`snow`)**: Calm, slow-falling snow for a winter aesthetic.
+- **Control**: Effects automatically clear after **15 seconds** to maintain performance, or can be stopped manually using the `end` command.
+
+### 🎭 Universal Staggered Entrance
+A proprietary animation system using **Framer Motion** variants. Every section (Banner, Skills, Experience, Projects, Contact, Footer) reveals its children sequentially for a "perfect landing page" flow.
+
+### 💎 Premium Tech Aesthetic
+- **Glassmorphism**: Consistent design system using `backdrop-filter`, semi-transparent borders, and HSL-tailored accent colors.
+- **Floating Utilities**: Scroll-aware "Back to Top" button and interactive terminal toggle.
+- **Mobile-First Optimization**: Custom CSS media queries for high-fidelity rendering on all screen sizes.
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React.js 18
+- **Styling**: Vanilla CSS, React Bootstrap
+- **Animations**: Framer Motion, Animate.css
+- **Backend (Contact)**: Node.js / Serverless API integration
+- **Building**: Vite (Lightning fast HMR)
+
+## 📦 Project Structure
+
+```text
+src/
+├── assets/          # Images, logos, and icons
+├── components/      # UI Components (NavBar, WeatherEffects, Terminal, etc.)
+├── api/             # API handlers (e.g., Contact form)
+└── App.jsx          # Main application architecture
+```
+
+---
+*Designed and built by Naveen Kumar — 2026*

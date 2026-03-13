@@ -7,6 +7,7 @@ import {Projects} from './components/Projects';
 import {Contact} from './components/Contact';
 import {Footer} from './components/Footer';
 import Terminal from './components/Terminal';
+import WeatherEffects from './components/WeatherEffects';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -21,6 +22,7 @@ function App() {
   });
 
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [activeWeather, setActiveWeather] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,7 +64,8 @@ function App() {
       <Projects />
       <Contact />
       <Footer />
-      <Terminal />
+      <Terminal setWeather={setActiveWeather} />
+      <WeatherEffects type={activeWeather} />
 
       {showBackToTop && (
         <motion.button
