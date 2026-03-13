@@ -904,7 +904,16 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   100% { opacity: 0.4; }
 }
 
-/* X-Ray V4: Technical Precision & Stability */
+/* Infrastructure Map Overrides */
+.infra-title {
+  font-size: 24px !important;
+}
+
+@media (max-width: 768px) {
+  .infra-title {
+    font-size: 14px !important;
+  }
+}
 .x-ray-active {
   background-color: #050508 !important;
 }

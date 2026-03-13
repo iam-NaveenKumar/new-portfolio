@@ -11,6 +11,7 @@ import Terminal from './components/Terminal';
 import WeatherEffects from './components/WeatherEffects';
 import SystemDashboard from './components/SystemDashboard';
 import KernelLogs from './components/KernelLogs';
+import InfrastructureMap from './components/InfrastructureMap';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -28,6 +29,7 @@ function App() {
   const [activeWeather, setActiveWeather] = useState(null);
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
   const [isXrayMode, setIsXrayMode] = useState(false);
+  const [isInfraMapOpen, setIsInfraMapOpen] = useState(false);
 
   useEffect(() => {
     if (activeWeather) {
@@ -60,6 +62,10 @@ function App() {
 
   const toggleXray = (value) => {
     setIsXrayMode(prev => (typeof value === 'boolean' ? value : !prev));
+  };
+
+  const toggleInfraMap = (value) => {
+    setIsInfraMapOpen(prev => (typeof value === 'boolean' ? value : !prev));
   };
 
   // Component Inspector Logic
@@ -123,6 +129,7 @@ function App() {
           setWeather={setActiveWeather} 
           toggleDashboard={toggleDashboard}
           toggleXray={toggleXray}
+          toggleInfraMap={toggleInfraMap}
         />
         
         <WeatherEffects type={activeWeather} />
@@ -138,7 +145,16 @@ function App() {
 
         <AnimatePresence>
           {isXrayMode && <KernelLogs />}
-        </AnimatePresence>
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {isInfraMapOpen && (
+          <InfrastructureMap 
+            isOpen={isInfraMapOpen} 
+            onClose={() => setIsInfraMapOpen(false)} 
+          />
+        )}
+      </AnimatePresence>
       </div>
 
       <Analytics />

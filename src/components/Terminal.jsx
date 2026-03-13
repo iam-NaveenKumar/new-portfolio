@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Terminal = ({ setWeather, toggleDashboard, toggleXray }) => {
+const Terminal = ({ setWeather, toggleDashboard, toggleXray, toggleInfraMap }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
   const [history, setHistory] = useState([
@@ -16,7 +16,7 @@ const Terminal = ({ setWeather, toggleDashboard, toggleXray }) => {
   const inputRef = useRef(null);
 
   const commands = {
-    help: 'Commands: about, stack, systems, projects, cv, rain, snow, dashboard, xray, ping, ls, clear, exit',
+    help: 'Commands: about, stack, systems, projects, cv, rain, snow, dashboard, xray, infrastructure, ping, ls, clear, exit',
     about: 'Naveen Kumar — Engineering student focused on building AI-powered learning systems and production-ready web backends.',
     stack: () => {
       document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' });
@@ -63,9 +63,22 @@ const Terminal = ({ setWeather, toggleDashboard, toggleXray }) => {
     ping: () => {
       return `PONG: ${Math.floor(Math.random() * 50 + 20)}ms`;
     },
+    infrastructure: () => {
+      toggleInfraMap();
+      return 'Opening Infrastructure Map... Visualizing System Topology.';
+    },
+    infra: () => {
+      toggleInfraMap();
+      return 'Opening Infrastructure Map... Visualizing System Topology.';
+    },
+    map: () => {
+      toggleInfraMap();
+      return 'Opening Infrastructure Map... Visualizing System Topology.';
+    },
     end: () => {
       setWeather(null);
       toggleXray(false);
+      toggleInfraMap(false);
       return 'All active effects and Dev modes cleared.';
     },
     clear: () => setHistory([]),
