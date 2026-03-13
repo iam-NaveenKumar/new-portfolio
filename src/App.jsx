@@ -6,6 +6,7 @@ import { Experience } from './components/Experience';
 import {Projects} from './components/Projects';
 import {Contact} from './components/Contact';
 import {Footer} from './components/Footer';
+import Terminal from './components/Terminal';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -61,6 +62,7 @@ function App() {
       <Projects />
       <Contact />
       <Footer />
+      <Terminal />
 
       {showBackToTop && (
         <motion.button

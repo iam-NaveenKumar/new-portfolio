@@ -2,14 +2,13 @@ import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import colorSharp2 from "../assets/img/color-sharp2.png";
-
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const ProjectCard = ({ title, description, stack, status, link }) => {
   return (
     <motion.div 
       className="project-box h-100"
-      whileHover={{ y: -10 }}
+      whileHover={{ y: -5 }}
       style={{ 
         background: 'var(--glass-bg)', 
         backdropFilter: 'var(--glass-blur)', 
@@ -93,21 +92,40 @@ export const Projects = () => {
     { title: "AI Image Generator", description: "Generates AI images using Hugging Face models.", stack: "React, Hugging Face API" },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.8, ease: "easeOut" }
+    }
+  };
+
   return (
     <section className="project" id="projects">
       <Container>
         <Row>
           <Col xs={12}>
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
             >
-              <h2 style={{ textAlign: 'center' }}>Projects</h2>
-              <p style={{ textAlign: 'center', color: 'var(--text-muted)', maxWidth: '800px', margin: '20px auto' }}>
+              <motion.h2 variants={itemVariants} style={{ textAlign: 'center' }}>Projects</motion.h2>
+              <motion.p variants={itemVariants} style={{ textAlign: 'center', color: 'var(--text-muted)', maxWidth: '800px', margin: '20px auto' }}>
                 A selection of my recent works, ranging from complex full-stack applications to focused technical experiments.
-              </p>
+              </motion.p>
               <Tab.Container id="projects-tabs" defaultActiveKey="first">
                 <Nav variant="pills" className="nav-pills mb-5 justify-content-center align-items-center" id="pills-tab">
                   <Nav.Item>
@@ -121,18 +139,32 @@ export const Projects = () => {
                   <Tab.Pane eventKey="first">
                     <Carousel responsive={responsive} infinite={true} autoPlay={true} className="project-slider">
                       {projects.map((project, index) => (
-                        <div key={index} className="px-2 h-100">
+                        <motion.div 
+                          key={index} 
+                          className="px-2 h-100"
+                          initial={{ opacity: 0, y: 30 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5, delay: index * 0.1 }}
+                          viewport={{ once: true }}
+                        >
                           <ProjectCard {...project} />
-                        </div>
+                        </motion.div>
                       ))}
                     </Carousel>
                   </Tab.Pane>
                   <Tab.Pane eventKey="second">
                     <Carousel responsive={responsive} infinite={true} autoPlay={true} className="project-slider">
                       {miniProjects.map((project, index) => (
-                        <div key={index} className="px-2 h-100">
+                        <motion.div 
+                          key={index} 
+                          className="px-2 h-100"
+                          initial={{ opacity: 0, y: 30 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5, delay: index * 0.1 }}
+                          viewport={{ once: true }}
+                        >
                           <ProjectCard {...project} />
-                        </div>
+                        </motion.div>
                       ))}
                     </Carousel>
                   </Tab.Pane>

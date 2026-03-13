@@ -58,16 +58,17 @@ function Skills() {
           <Col>
             <motion.div 
               className="skills-bx"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
               transition={{ duration: 0.8 }}
               viewport={{ once: true, margin: "-100px" }}
               style={{ marginTop: '0' }}
             >
-              <h2>Skills</h2>
-              <p style={{ color: 'var(--text-muted)' }}>
+              <motion.h2 variants={itemVariants}>Skills</motion.h2>
+              <motion.p variants={itemVariants} style={{ color: 'var(--text-muted)' }}>
                 A showcase of my technical expertise and the tools I use to bring ideas to life.
-              </p>
+              </motion.p>
               <Carousel 
                 responsive={responsive} 
                 infinite={true} 
@@ -79,9 +80,9 @@ function Skills() {
                   <div key={index} className="skill-category-card-wrapper">
                     <motion.div 
                       className="skill-category-card h-100" 
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: index * 0.1 }}
+                      variants={containerVariants}
+                      initial="hidden"
+                      whileInView="visible"
                       viewport={{ once: true }}
                       style={{ background: 'var(--glass-bg)', backdropFilter: 'var(--glass-blur)', border: '1px solid var(--glass-border)' }}
                     >
@@ -91,6 +92,7 @@ function Skills() {
                           <motion.span 
                             key={i} 
                             className="skill-tag"
+                            variants={itemVariants}
                             whileHover={{ scale: 1.1, backgroundColor: 'var(--accent-color)', color: '#fff' }}
                             style={{ 
                               background: 'rgba(255,255,255,0.05)', 

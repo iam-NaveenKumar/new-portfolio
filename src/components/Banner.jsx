@@ -7,6 +7,8 @@ import TrackVisibility from 'react-on-screen';
 
 import { motion } from 'framer-motion';
 
+import { useRef } from 'react';
+
 function Banner() {
     const [loopNum, setLoopNum] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
@@ -48,26 +50,47 @@ function Banner() {
         }
     };
 
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2,
+                delayChildren: 0.3
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { y: 20, opacity: 0 },
+        visible: {
+            y: 0,
+            opacity: 1,
+            transition: { duration: 0.8, ease: "easeOut" }
+        }
+    };
+
     return (
         <section className="banner" id="home">
             <Container>
                 <Row className="align-items-center">
                     <Col xs={12} md={6} xl={7}>
                         <motion.div
-                            initial={{ opacity: 0, x: -50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.8 }}
+                            variants={containerVariants}
+                            initial="hidden"
+                            whileInView="visible"
                             viewport={{ once: true }}
                         >
-                            <span className="tagline">Welcome to my Portfolio</span>
-                            <h1 style={{ fontSize: '4.5rem', fontWeight: '800', lineHeight: '1.1' }}>
+                            <motion.span variants={itemVariants} className="tagline">Welcome to my Portfolio</motion.span>
+                            <motion.h1 variants={itemVariants} style={{ fontSize: '4.5rem', fontWeight: '800', lineHeight: '1.1' }}>
                                 {`Hi! I'm Naveen Kumar `} <br />
                                 <span className="wrap" style={{ color: 'var(--accent-color)' }}>{text}</span>
-                            </h1>
-                            <p style={{ fontSize: '1.2rem', marginTop: '20px', color: 'var(--text-muted)' }}>
+                            </motion.h1>
+                            <motion.p variants={itemVariants} style={{ fontSize: '1.2rem', marginTop: '20px', color: 'var(--text-muted)' }}>
                                 Information Technology student focused on AI applications, backend engineering, and modern web development.
-                            </p>
+                            </motion.p>
                             <motion.button 
+                                variants={itemVariants}
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => window.location.href='#connect'}

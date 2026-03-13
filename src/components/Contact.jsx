@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-
 import { motion } from 'framer-motion';
 
 export const Contact = () => {
@@ -44,6 +43,26 @@ export const Contact = () => {
     setButtonText("Send");
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.6, ease: "easeOut" }
+    }
+  };
+
   return (
     <section className="contact" id="connect" style={{ paddingTop: '100px', paddingBottom: '100px' }}>
       <Container>
@@ -51,9 +70,9 @@ export const Contact = () => {
           <Col md={10} lg={8}>
             <motion.div 
               className="contact-bx"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
               style={{ 
                 padding: '60px 40px', 
@@ -63,13 +82,13 @@ export const Contact = () => {
                 borderRadius: '30px'
               }}
             >
-              <h2 style={{ textAlign: 'center', marginBottom: '15px', fontWeight: '800' }}>Let's Build Something Great</h2>
-              <p style={{ textAlign: 'center', color: 'var(--text-muted)', marginBottom: '40px' }}>
+              <motion.h2 variants={itemVariants} style={{ textAlign: 'center', marginBottom: '15px', fontWeight: '800' }}>Let's Build Something Great</motion.h2>
+              <motion.p variants={itemVariants} style={{ textAlign: 'center', color: 'var(--text-muted)', marginBottom: '40px' }}>
                 Feel free to reach out for collaborations or just a friendly hello.
-              </p>
+              </motion.p>
               <form onSubmit={handleSubmit}>
                 <Row className="g-4">
-                  <Col sm={6}>
+                  <Col sm={6} as={motion.div} variants={itemVariants}>
                     <motion.input
                       whileFocus={{ scale: 1.02, borderColor: 'var(--accent-color)' }}
                       type="text"
@@ -79,7 +98,7 @@ export const Contact = () => {
                       style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--glass-border)', color: '#fff', padding: '15px 20px', borderRadius: '15px', width: '100%' }}
                     />
                   </Col>
-                  <Col sm={6}>
+                  <Col sm={6} as={motion.div} variants={itemVariants}>
                     <motion.input
                       whileFocus={{ scale: 1.02, borderColor: 'var(--accent-color)' }}
                       type="text"
@@ -89,7 +108,7 @@ export const Contact = () => {
                       style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--glass-border)', color: '#fff', padding: '15px 20px', borderRadius: '15px', width: '100%' }}
                     />
                   </Col>
-                  <Col sm={6}>
+                  <Col sm={6} as={motion.div} variants={itemVariants}>
                     <motion.input
                       whileFocus={{ scale: 1.02, borderColor: 'var(--accent-color)' }}
                       type="email"
@@ -99,7 +118,7 @@ export const Contact = () => {
                       style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--glass-border)', color: '#fff', padding: '15px 20px', borderRadius: '15px', width: '100%' }}
                     />
                   </Col>
-                  <Col sm={6}>
+                  <Col sm={6} as={motion.div} variants={itemVariants}>
                     <motion.input
                       whileFocus={{ scale: 1.02, borderColor: 'var(--accent-color)' }}
                       type="tel"
@@ -109,7 +128,7 @@ export const Contact = () => {
                       style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--glass-border)', color: '#fff', padding: '15px 20px', borderRadius: '15px', width: '100%' }}
                     />
                   </Col>
-                  <Col xs={12}>
+                  <Col xs={12} as={motion.div} variants={itemVariants}>
                     <motion.textarea
                       whileFocus={{ scale: 1.01, borderColor: 'var(--accent-color)' }}
                       rows="5"
@@ -119,7 +138,7 @@ export const Contact = () => {
                       style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--glass-border)', color: '#fff', padding: '15px 20px', borderRadius: '15px', width: '100%', resize: 'none' }}
                     />
                   </Col>
-                  <Col xs={12} className="text-center">
+                  <Col xs={12} className="text-center" as={motion.div} variants={itemVariants}>
                     <motion.button 
                       type="submit"
                       whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(170, 54, 124, 0.4)' }}

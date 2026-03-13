@@ -2,6 +2,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import colorSharp from "../assets/img/color-sharp.png";
+import { motion } from 'framer-motion';
 
 export const Experience = () => {
   const experiences = [
@@ -34,14 +35,39 @@ export const Experience = () => {
     mobile: { breakpoint: { max: 464, min: 0 }, items: 1 }
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.8, ease: "easeOut" }
+    }
+  };
+
   return (
     <section className="experience" id="experience">
       <Container>
         <Row>
           <Col size={12}>
-            <div className="experience-bx">
-              <h2>Experience</h2>
-              <p>My professional journey and internship experiences.</p>
+            <motion.div 
+              className="experience-bx"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              <motion.h2 variants={itemVariants}>Experience</motion.h2>
+              <motion.p variants={itemVariants}>My professional journey and internship experiences.</motion.p>
               <Carousel 
                 responsive={responsive} 
                 infinite={true} 
@@ -51,7 +77,11 @@ export const Experience = () => {
                 itemClass="px-2"
               >
                 {experiences.map((exp, index) => (
-                  <div key={index} className="experience-card">
+                  <motion.div 
+                    key={index} 
+                    className="experience-card"
+                    variants={itemVariants}
+                  >
                     <h3>{exp.title}</h3>
                     <h4>{exp.company}</h4>
                     <span className="duration">{exp.duration}</span>
@@ -60,10 +90,10 @@ export const Experience = () => {
                         <li key={i}>{item}</li>
                       ))}
                     </ul>
-                  </div>
+                  </motion.div>
                 ))}
               </Carousel>
-            </div>
+            </motion.div>
           </Col>
         </Row>
       </Container>
