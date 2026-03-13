@@ -64,7 +64,7 @@ export const Contact = () => {
   };
 
   return (
-    <section className="contact" id="connect" style={{ paddingTop: '100px', paddingBottom: '100px' }}>
+    <section className="contact" id="connect" data-component="Contact" style={{ paddingTop: '100px', paddingBottom: '100px' }}>
       <Container>
         <Row className="justify-content-center">
           <Col md={10} lg={8}>

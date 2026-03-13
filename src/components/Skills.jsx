@@ -52,7 +52,7 @@ function Skills() {
   };
 
   return (
-    <section className="skill" id="skills">
+    <section className="skill" id="skills" data-component="Skills">
       <Container>
         <Row>
           <Col>

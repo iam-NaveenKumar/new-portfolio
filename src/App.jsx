@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Analytics } from "@vercel/analytics/react"
 import NavBar from './components/NavBar';
 import Banner from './components/Banner';
@@ -9,10 +9,12 @@ import {Contact} from './components/Contact';
 import {Footer} from './components/Footer';
 import Terminal from './components/Terminal';
 import WeatherEffects from './components/WeatherEffects';
+import SystemDashboard from './components/SystemDashboard';
+import KernelLogs from './components/KernelLogs';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
 
 function App() {
   const { scrollYProgress } = useScroll();
@@ -24,6 +26,8 @@ function App() {
 
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [activeWeather, setActiveWeather] = useState(null);
+  const [isDashboardOpen, setIsDashboardOpen] = useState(false);
+  const [isXrayMode, setIsXrayMode] = useState(false);
 
   useEffect(() => {
     if (activeWeather) {
@@ -50,8 +54,43 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const toggleDashboard = () => {
+    setIsDashboardOpen(prev => !prev);
+  };
+
+  const toggleXray = (value) => {
+    setIsXrayMode(prev => (typeof value === 'boolean' ? value : !prev));
+  };
+
+  // Component Inspector Logic
+  const handleAppClick = (e) => {
+    if (!isXrayMode) return;
+    
+    const component = e.target.closest('[data-component]');
+    if (component) {
+      const name = component.getAttribute('data-component');
+      const rect = component.getBoundingClientRect();
+      const info = {
+        name,
+        width: Math.round(rect.width),
+        height: Math.round(rect.height),
+        top: Math.round(rect.top + window.scrollY)
+      };
+      
+      // Dispatch custom event for KernelLogs
+      const event = new CustomEvent('xray-inspect', { detail: info });
+      window.dispatchEvent(event);
+    }
+  };
+
   return (
-    <div className="App">
+    <div 
+      className={`App ${isXrayMode ? 'x-ray-active' : ''}`}
+      onClick={handleAppClick}
+    >
+      {/* Structural Overlays (Fixed) */}
+      <div className="x-ray-overlay" />
+      
       <motion.div
         className="progress-bar"
         style={{
@@ -67,15 +106,41 @@ function App() {
         }}
       />
       
-      <NavBar />
-      <Banner />
-      <Skills />
-      <Experience />
-      <Projects />
-      <Contact />
-      <Footer />
-      <Terminal setWeather={setActiveWeather} />
-      <WeatherEffects type={activeWeather} />
+      {/* 3D Content Layer */}
+      <div className="x-ray-tilt-container">
+        <NavBar />
+        <Banner />
+        <Skills />
+        <Experience />
+        <Projects />
+        <Contact />
+        <Footer />
+      </div>
+      
+      {/* Fixed UI Tools */}
+      <div className="fixed-tools-layer" style={{ position: 'relative', zIndex: 10001 }}>
+        <Terminal 
+          setWeather={setActiveWeather} 
+          toggleDashboard={toggleDashboard}
+          toggleXray={toggleXray}
+        />
+        
+        <WeatherEffects type={activeWeather} />
+        
+        <AnimatePresence>
+          {isDashboardOpen && (
+            <SystemDashboard 
+              isOpen={isDashboardOpen} 
+              onClose={() => setIsDashboardOpen(false)} 
+            />
+          )}
+        </AnimatePresence>
+
+        <AnimatePresence>
+          {isXrayMode && <KernelLogs />}
+        </AnimatePresence>
+      </div>
+
       <Analytics />
 
       {showBackToTop && (

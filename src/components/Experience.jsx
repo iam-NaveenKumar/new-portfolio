@@ -55,7 +55,7 @@ export const Experience = () => {
   };
 
   return (
-    <section className="experience" id="experience">
+    <section className="experience" id="experience" data-component="Experience">
       <Container>
         <Row>
           <Col size={12}>

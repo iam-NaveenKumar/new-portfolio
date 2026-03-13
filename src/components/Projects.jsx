@@ -112,7 +112,7 @@ export const Projects = () => {
   };
 
   return (
-    <section className="project" id="projects">
+    <section className="project" id="projects" data-component="Projects">
       <Container>
         <Row>
           <Col xs={12}>

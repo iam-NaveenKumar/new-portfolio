@@ -875,3 +875,119 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   filter: blur(1px);
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
+
+/* Engineering UI & Dashboard */
+.system-dashboard-container {
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  background-color: rgba(17, 25, 40, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+.terminal-ghost-text {
+  color: rgba(255, 255, 255, 0.25);
+  font-family: inherit;
+  font-size: inherit;
+  pointer-events: none;
+  user-select: none;
+}
+
+@keyframes sonar-pulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 0.4; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+@keyframes pulsate {
+  0% { opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { opacity: 0.4; }
+}
+
+/* X-Ray V4: Technical Precision & Stability */
+.x-ray-active {
+  background-color: #050508 !important;
+}
+
+/* Dedicated Content Container for 3D Tilt */
+.x-ray-tilt-container {
+  perspective: 2000px;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.x-ray-active .x-ray-tilt-container {
+  transform: rotateX(2deg) rotateY(-2deg);
+}
+
+/* Dedicated Overlay for Blueprint Grid and Laser */
+.x-ray-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.x-ray-active .x-ray-overlay {
+  opacity: 1;
+}
+
+.x-ray-overlay::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: 
+    linear-gradient(rgba(0, 242, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 242, 255, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.x-ray-overlay::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 4px;
+  background: linear-gradient(90deg, transparent, #00f2ff, #AA367C, #00f2ff, transparent);
+  box-shadow: 0 0 20px #00f2ff, 0 0 40px #AA367C;
+  animation: scan-laser 4s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes scan-laser {
+  0% { transform: translateY(-10vh); }
+  100% { transform: translateY(110vh); }
+}
+
+.x-ray-active [data-component] {
+  outline: 1px solid rgba(0, 242, 255, 0.5) !important;
+  box-shadow: 0 0 15px rgba(0, 242, 255, 0.2) inset !important;
+  position: relative !important;
+  cursor: crosshair;
+}
+
+.x-ray-active [data-component]::after {
+  content: "COMP_ID: " attr(data-component);
+  position: absolute;
+  top: -20px;
+  left: 10px;
+  background: rgba(0, 242, 255, 0.8);
+  color: #000;
+  font-size: 10px;
+  font-family: 'Fira Code', monospace;
+  padding: 2px 8px;
+  z-index: 10001;
+  pointer-events: none;
+  clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
+  font-weight: bold;
+}
+
+/* Tech Specs on Hover */
+.x-ray-active *:hover {
+  outline: 1px solid #AA367C !important;
+  outline-offset: 4px;
+}
