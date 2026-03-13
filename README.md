@@ -137,4 +137,4 @@ This portfolio acts as an **experimentation platform** to:
 ## 👨‍💻 Author
 
 **Naveen Kumar**  
-Interactive Web Engineering & System Exploration — 2026
+Interactive Web Engineering & System Exploration — 2025
