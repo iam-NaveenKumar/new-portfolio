@@ -3,6 +3,8 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import colorSharp from "../assets/img/color-sharp.png";
 
+import { motion } from 'framer-motion';
+
 function Skills() {
   const skillsData = [
     {
@@ -28,22 +30,25 @@ function Skills() {
   ];
 
   const responsive = {
-    superLargeDesktop: {
-      breakpoint: { max: 4000, min: 3000 },
-      items: 3
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1
+    superLargeDesktop: { breakpoint: { max: 4000, min: 3000 }, items: 3 },
+    desktop: { breakpoint: { max: 3000, min: 1024 }, items: 3 },
+    tablet: { breakpoint: { max: 1024, min: 464 }, items: 2 },
+    mobile: { breakpoint: { max: 464, min: 0 }, items: 1 }
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
     }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1 }
   };
 
   return (
@@ -51,10 +56,17 @@ function Skills() {
       <Container>
         <Row>
           <Col>
-            <div className="skills-bx">
+            <motion.div 
+              className="skills-bx"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true, margin: "-100px" }}
+              style={{ marginTop: '0' }}
+            >
               <h2>Skills</h2>
-              <p>
-                A comprehensive showcase of my technical expertise across various domains.
+              <p style={{ color: 'var(--text-muted)' }}>
+                A showcase of my technical expertise and the tools I use to bring ideas to life.
               </p>
               <Carousel 
                 responsive={responsive} 
@@ -65,20 +77,38 @@ function Skills() {
               >
                 {skillsData.map((item, index) => (
                   <div key={index} className="skill-category-card-wrapper">
-                    <div className="skill-category-card h-100">
-                      <h3>{item.category}</h3>
+                    <motion.div 
+                      className="skill-category-card h-100" 
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      style={{ background: 'var(--glass-bg)', backdropFilter: 'var(--glass-blur)', border: '1px solid var(--glass-border)' }}
+                    >
+                      <h3 style={{ color: 'var(--accent-color)', marginBottom: '20px', fontWeight: '700' }}>{item.category}</h3>
                       <div className="d-flex flex-wrap justify-content-center gap-2 mt-3">
                         {item.skills.map((skill, i) => (
-                          <span key={i} className="skill-tag">
+                          <motion.span 
+                            key={i} 
+                            className="skill-tag"
+                            whileHover={{ scale: 1.1, backgroundColor: 'var(--accent-color)', color: '#fff' }}
+                            style={{ 
+                              background: 'rgba(255,255,255,0.05)', 
+                              padding: '8px 16px', 
+                              borderRadius: '20px', 
+                              fontSize: '0.9rem',
+                              border: '1px solid var(--glass-border)'
+                            }}
+                          >
                             {skill}
-                          </span>
+                          </motion.span>
                         ))}
                       </div>
-                    </div>
+                    </motion.div>
                   </div>
                 ))}
               </Carousel>
-            </div>
+            </motion.div>
           </Col>
         </Row>
       </Container>

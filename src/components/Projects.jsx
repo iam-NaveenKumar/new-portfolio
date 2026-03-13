@@ -3,23 +3,57 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import colorSharp2 from "../assets/img/color-sharp2.png";
 
+import { motion, AnimatePresence } from 'framer-motion';
+
 const ProjectCard = ({ title, description, stack, status, link }) => {
   return (
-    <div className="project-box">
-      <h4>{title}</h4>
-      {status && <span className="status">{status}</span>}
-      <p>{description}</p>
-      {stack && (
-        <p style={{ fontSize: "0.9rem", marginTop: "10px" }}>
-          <strong>Stack:</strong> {stack}
-        </p>
-      )}
-      {link && (
-        <a href={link} target="_blank" rel="noopener noreferrer" style={{ color: "white", textDecoration: "underline" }}>
-          Live Demo
-        </a>
-      )}
-    </div>
+    <motion.div 
+      className="project-box h-100"
+      whileHover={{ y: -10 }}
+      style={{ 
+        background: 'var(--glass-bg)', 
+        backdropFilter: 'var(--glass-blur)', 
+        border: '1px solid var(--glass-border)',
+        padding: '30px',
+        borderRadius: '24px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '15px'
+      }}
+    >
+      <div style={{ flex: 1 }}>
+        <h4 style={{ color: 'var(--accent-color)', fontWeight: '700', fontSize: '1.4rem' }}>{title}</h4>
+        {status && <span className="status" style={{ 
+          background: 'rgba(255, 105, 180, 0.1)', 
+          color: 'hotpink', 
+          border: '1px solid rgba(255, 105, 180, 0.2)',
+          padding: '4px 12px',
+          borderRadius: '20px',
+          fontSize: '0.8rem',
+          display: 'inline-block',
+          marginBottom: '10px'
+        }}>{status}</span>}
+        <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: '1.6' }}>{description}</p>
+      </div>
+      <div>
+        {stack && (
+          <p style={{ fontSize: "0.85rem", color: 'var(--text-muted)' }}>
+            <strong style={{ color: 'var(--text-main)' }}>Stack:</strong> {stack}
+          </p>
+        )}
+        {link && (
+          <a href={link} target="_blank" rel="noopener noreferrer" style={{ 
+            color: "var(--accent-color)", 
+            textDecoration: "none", 
+            fontWeight: '600',
+            display: 'inline-block',
+            marginTop: '10px'
+          }}>
+            Live Demo →
+          </a>
+        )}
+      </div>
+    </motion.div>
   );
 };
 
@@ -52,36 +86,11 @@ export const Projects = () => {
   ];
 
   const miniProjects = [
-    {
-      title: "Gemini Clone",
-      description: "AI chatbot clone inspired by Google Gemini using Google’s Generative Language API.",
-      stack: "React, Vite, Gemini API",
-    },
-    {
-      title: "Joke Generator App",
-      description: "Fetches and displays jokes using the JokeAPI for entertainment.",
-      stack: "React, JokeAPI",
-    },
-    {
-      title: "FoodLens",
-      description: "A mobile app that helps users identify food items and provides nutritional insights.",
-      stack: "React, Capacitor",
-    },
-    {
-      title: "Portfolio Website",
-      description: "A personal portfolio site to showcase projects, skills, and contact information.",
-      stack: "React, Bootstrap, Vite",
-    },
-    {
-      title: "News App",
-      description: "Displays the latest news articles by fetching data from NewsAPI.",
-      stack: "React, NewsAPI",
-    },
-    {
-      title: "AI Image Generator",
-      description: "Generates AI images from text prompts using Hugging Face models.",
-      stack: "React, Hugging Face API",
-    },
+    { title: "Gemini Clone", description: "AI chatbot clone inspired by Google Gemini.", stack: "React, Vite, Gemini API" },
+    { title: "Joke Generator App", description: "Fetches and displays jokes using the JokeAPI.", stack: "React, JokeAPI" },
+    { title: "FoodLens", description: "A mobile app that helps users identify food items.", stack: "React, Capacitor" },
+    { title: "News App", description: "Displays the latest news articles using NewsAPI.", stack: "React, NewsAPI" },
+    { title: "AI Image Generator", description: "Generates AI images using Hugging Face models.", stack: "React, Hugging Face API" },
   ];
 
   return (
@@ -89,27 +98,28 @@ export const Projects = () => {
       <Container>
         <Row>
           <Col xs={12}>
-            <div>
-              <h2>Projects</h2>
-              <p>A selection of my recent works, ranging from complex full-stack applications to focused technical experiments.</p>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 style={{ textAlign: 'center' }}>Projects</h2>
+              <p style={{ textAlign: 'center', color: 'var(--text-muted)', maxWidth: '800px', margin: '20px auto' }}>
+                A selection of my recent works, ranging from complex full-stack applications to focused technical experiments.
+              </p>
               <Tab.Container id="projects-tabs" defaultActiveKey="first">
                 <Nav variant="pills" className="nav-pills mb-5 justify-content-center align-items-center" id="pills-tab">
                   <Nav.Item>
-                    <Nav.Link eventKey="first" id="projects-tabs-tab-first">Main Projects</Nav.Link>
+                    <Nav.Link eventKey="first">Main Projects</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="second" id="projects-tabs-tab-second">Mini Projects</Nav.Link>
+                    <Nav.Link eventKey="second">Mini Projects</Nav.Link>
                   </Nav.Item>
                 </Nav>
-                <Tab.Content id="slideInUp">
+                <Tab.Content>
                   <Tab.Pane eventKey="first">
-                    <Carousel 
-                      responsive={responsive} 
-                      infinite={true} 
-                      autoPlay={true}
-                      autoPlaySpeed={3000}
-                      className="project-slider"
-                    >
+                    <Carousel responsive={responsive} infinite={true} autoPlay={true} className="project-slider">
                       {projects.map((project, index) => (
                         <div key={index} className="px-2 h-100">
                           <ProjectCard {...project} />
@@ -118,13 +128,7 @@ export const Projects = () => {
                     </Carousel>
                   </Tab.Pane>
                   <Tab.Pane eventKey="second">
-                    <Carousel 
-                      responsive={responsive} 
-                      infinite={true} 
-                      autoPlay={true}
-                      autoPlaySpeed={3000}
-                      className="project-slider"
-                    >
+                    <Carousel responsive={responsive} infinite={true} autoPlay={true} className="project-slider">
                       {miniProjects.map((project, index) => (
                         <div key={index} className="px-2 h-100">
                           <ProjectCard {...project} />
@@ -134,7 +138,7 @@ export const Projects = () => {
                   </Tab.Pane>
                 </Tab.Content>
               </Tab.Container>
-            </div>
+            </motion.div>
           </Col>
         </Row>
       </Container>

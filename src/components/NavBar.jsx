@@ -7,10 +7,11 @@ import navIcon1 from '../assets/img/nav-icon1.svg';
 import navIcon2 from '../assets/img/nav-icon2.svg';
 import navIcon3 from '../assets/img/nav-icon3.svg';
 
+import { motion } from 'framer-motion';
+
 function NavBar() {
     const [activeLink, setActiveLink] = useState('home');
     const [scrolled, setScrolled] = useState(false);
-
 
     useEffect(() => {
         const onScroll = () => {
@@ -30,38 +31,62 @@ function NavBar() {
         setActiveLink(value);
     };
 
-  return (
-    <Navbar expand="lg" className={scrolled ? "scrolled" : ""}>
-      <Container>
-        <Navbar.Brand href="/" onClick={() => window.location.reload()}>
-            <img src={logo} alt="LOGO" style={{overflow:"hidden",borderRadius:"50%",height:"4rem",width:"4rem",border:"1px solid #fff"}} />
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#home" className={activeLink === 'home' ? 'active navbar-link' : 'navbar-link'} onClick={()=> onUpdateActiveLink('home')}>HOME</Nav.Link>
-            <Nav.Link href="#skills" className={activeLink === 'skills' ? 'active navbar-link' : 'navbar-link'} onClick={()=> onUpdateActiveLink('skills')}>SKILLS</Nav.Link>
-            <Nav.Link href="#experience" className={activeLink === 'experience' ? 'active navbar-link' : 'navbar-link'} onClick={()=> onUpdateActiveLink('experience')}>EXPERIENCE</Nav.Link>
-            <Nav.Link href="#projects" className={activeLink === 'projects' ? 'active navbar-link' : 'navbar-link'} onClick={()=> onUpdateActiveLink('projects')}>PROJECTS</Nav.Link>
-
-            
-          </Nav>
-          <span className="navbar-text">
-            <div className="social-icon">
-                <a href="https://www.linkedin.com/in/naveen-kumar-p-492020290/"><img src={navIcon1} alt="linkedin" /></a>
-                <a href="https://github.com/iam-NaveenKumar"><img src={navIcon2} alt="github" /></a>
-                <a href="https://www.instagram.com/_i.am.naveen_/"><img src={navIcon3} alt="instagram" /></a>
-            </div>
-            <a href="/Naveen_Kumar_Resume.pdf" download="Naveen_Kumar_Resume.pdf" className="vvd-link">
-              <button className="vvd">
-                  <span>Download CV</span>
-              </button>
-            </a>
-          </span>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-  );
+    return (
+        <motion.div
+            initial={{ y: -100 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.5 }}
+        >
+            <Navbar expand="lg" className={scrolled ? "scrolled" : ""}>
+                <Container>
+                    <Navbar.Brand href="/" onClick={() => window.location.reload()}>
+                        <motion.img 
+                            whileHover={{ scale: 1.1 }}
+                            src={logo} 
+                            alt="LOGO" 
+                            style={{ overflow: "hidden", borderRadius: "50%", height: "4rem", width: "4rem", border: "1px solid #fff" }} 
+                        />
+                    </Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="me-auto">
+                            {['home', 'skills', 'experience', 'projects'].map((link) => (
+                                <Nav.Link 
+                                    key={link}
+                                    href={`#${link}`} 
+                                    className={activeLink === link ? 'active navbar-link' : 'navbar-link'} 
+                                    onClick={() => onUpdateActiveLink(link)}
+                                >
+                                    <motion.span
+                                        whileHover={{ y: -2 }}
+                                        transition={{ type: "spring", stiffness: 300 }}
+                                    >
+                                        {link.toUpperCase()}
+                                    </motion.span>
+                                </Nav.Link>
+                            ))}
+                        </Nav>
+                        <span className="navbar-text">
+                            <div className="social-icon">
+                                <motion.a whileHover={{ y: -3 }} href="https://www.linkedin.com/in/naveen-kumar-p-492020290/"><img src={navIcon1} alt="linkedin" /></motion.a>
+                                <motion.a whileHover={{ y: -3 }} href="https://github.com/iam-NaveenKumar"><img src={navIcon2} alt="github" /></motion.a>
+                                <motion.a whileHover={{ y: -3 }} href="https://www.instagram.com/_i.am.naveen_/"><img src={navIcon3} alt="instagram" /></motion.a>
+                            </div>
+                            <a href="/Naveen_Kumar_Resume.pdf" download="Naveen_Kumar_Resume.pdf" className="vvd-link">
+                                <motion.button 
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="vvd"
+                                >
+                                    <span>Download CV</span>
+                                </motion.button>
+                            </a>
+                        </span>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
+        </motion.div>
+    );
 }
 
 export default NavBar;

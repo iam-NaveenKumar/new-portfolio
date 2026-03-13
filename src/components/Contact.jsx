@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
+import { motion } from 'framer-motion';
+
 export const Contact = () => {
   const formInitialDetails = {
     firstName: "",
@@ -26,9 +28,7 @@ export const Contact = () => {
     try {
       let response = await fetch("/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formDetails),
       });
       let result = await response.json();
@@ -36,86 +36,116 @@ export const Contact = () => {
       if (result.code === 200) {
         setStatus({ success: true, message: "Message sent successfully" });
       } else {
-        setStatus({
-          success: false,
-          message: "Something went wrong, please try again later.",
-        });
+        setStatus({ success: false, message: "Something went wrong, please try again later." });
       }
     } catch (error) {
-      setStatus({
-        success: false,
-        message: "Failed to send message. Please try again.",
-      });
+      setStatus({ success: false, message: "Failed to send message. Please try again." });
     }
     setButtonText("Send");
   };
 
   return (
-    <section className="contact" id="connect">
+    <section className="contact" id="connect" style={{ paddingTop: '100px', paddingBottom: '100px' }}>
       <Container>
         <Row className="justify-content-center">
-          <Col md={8} lg={6}>
-            <div className="contact-bx p-4 p-sm-5 animate__animated animate__fadeIn">
-              <h2>Get In Touch</h2>
+          <Col md={10} lg={8}>
+            <motion.div 
+              className="contact-bx"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              style={{ 
+                padding: '60px 40px', 
+                background: 'var(--glass-bg)', 
+                backdropFilter: 'var(--glass-blur)', 
+                border: '1px solid var(--glass-border)',
+                borderRadius: '30px'
+              }}
+            >
+              <h2 style={{ textAlign: 'center', marginBottom: '15px', fontWeight: '800' }}>Let's Build Something Great</h2>
+              <p style={{ textAlign: 'center', color: 'var(--text-muted)', marginBottom: '40px' }}>
+                Feel free to reach out for collaborations or just a friendly hello.
+              </p>
               <form onSubmit={handleSubmit}>
-                <Row>
-                  <Col sm={6} className="px-1">
-                    <input
+                <Row className="g-4">
+                  <Col sm={6}>
+                    <motion.input
+                      whileFocus={{ scale: 1.02, borderColor: 'var(--accent-color)' }}
                       type="text"
                       value={formDetails.firstName}
                       placeholder="First Name"
                       onChange={(e) => onFormUpdate("firstName", e.target.value)}
+                      style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--glass-border)', color: '#fff', padding: '15px 20px', borderRadius: '15px', width: '100%' }}
                     />
                   </Col>
-                  <Col sm={6} className="px-1">
-                    <input
+                  <Col sm={6}>
+                    <motion.input
+                      whileFocus={{ scale: 1.02, borderColor: 'var(--accent-color)' }}
                       type="text"
                       value={formDetails.lastName}
                       placeholder="Last Name"
                       onChange={(e) => onFormUpdate("lastName", e.target.value)}
+                      style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--glass-border)', color: '#fff', padding: '15px 20px', borderRadius: '15px', width: '100%' }}
                     />
                   </Col>
-                  <Col sm={6} className="px-1">
-                    <input
+                  <Col sm={6}>
+                    <motion.input
+                      whileFocus={{ scale: 1.02, borderColor: 'var(--accent-color)' }}
                       type="email"
                       value={formDetails.email}
                       placeholder="Email Address"
                       onChange={(e) => onFormUpdate("email", e.target.value)}
+                      style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--glass-border)', color: '#fff', padding: '15px 20px', borderRadius: '15px', width: '100%' }}
                     />
                   </Col>
-                  <Col sm={6} className="px-1">
-                    <input
+                  <Col sm={6}>
+                    <motion.input
+                      whileFocus={{ scale: 1.02, borderColor: 'var(--accent-color)' }}
                       type="tel"
                       value={formDetails.phone}
                       placeholder="Phone No."
                       onChange={(e) => onFormUpdate("phone", e.target.value)}
+                      style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--glass-border)', color: '#fff', padding: '15px 20px', borderRadius: '15px', width: '100%' }}
                     />
                   </Col>
-                  <Col size={12} className="px-1">
-                    <textarea
-                      row="6"
+                  <Col xs={12}>
+                    <motion.textarea
+                      whileFocus={{ scale: 1.01, borderColor: 'var(--accent-color)' }}
+                      rows="5"
                       value={formDetails.message}
-                      placeholder="Message"
+                      placeholder="Your Message"
                       onChange={(e) => onFormUpdate("message", e.target.value)}
+                      style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--glass-border)', color: '#fff', padding: '15px 20px', borderRadius: '15px', width: '100%', resize: 'none' }}
                     />
-                    <button type="submit">
+                  </Col>
+                  <Col xs={12} className="text-center">
+                    <motion.button 
+                      type="submit"
+                      whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(170, 54, 124, 0.4)' }}
+                      whileTap={{ scale: 0.95 }}
+                      style={{ 
+                        background: 'linear-gradient(90deg, var(--accent-color), var(--accent-secondary))', 
+                        color: '#fff', 
+                        border: 'none', 
+                        padding: '16px 60px', 
+                        borderRadius: '50px', 
+                        fontSize: '1.1rem', 
+                        fontWeight: '700',
+                        letterSpacing: '1px'
+                      }}
+                    >
                       <span>{buttonText}</span>
-                    </button>
+                    </motion.button>
                   </Col>
                   {status.message && (
-                    <Col size={12}>
-                      <p
-                        className={
-                          status.success === false ? "danger" : "success"
-                        }
-                      >
-                        {status.message}
-                      </p>
+                    <Col xs={12} className="mt-4 text-center">
+                      <p className={status.success === false ? "text-danger" : "text-success"} style={{ fontWeight: '500' }}>{status.message}</p>
                     </Col>
                   )}
                 </Row>
               </form>
-            </div>
+            </motion.div>
           </Col>
         </Row>
       </Container>
