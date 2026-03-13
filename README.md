@@ -1,55 +1,55 @@
-# Professional AI-Powered Portfolio
+# Advanced Engineering Portfolio — Naveen Kumar
 
-A high-performance, visually stunning portfolio for **Naveen Kumar**, built with modern web technologies and focused on a "minimalist tech" aesthetic.
+A high-fidelity, interactive engineering showcase built to demonstrate deep technical expertise in **Full-Stack Development**, **System Architecture**, and **Browser Telemetry**. 
 
-## 🚀 Live Demo
-[View Live Portfolio](https://your-live-link-here.com)
+This project transforms a standard portfolio into a live diagnostic environment, featuring custom-built observability tools and a professional CLI.
 
-## ✨ Key Features
-
-### 💻 Interactive Developer CLI
-A custom-built React terminal emulator featuring command history, auto-focus, and integrated page controls.
-- **Commands**: 
-  - `help`: Lists all available commands.
-  - `about`: Professional summary and focus areas.
-  - `stack`: Displays tech expertise and scrolls to the Skills section.
-  - `projects`: Navigates directly to the Projects section.
-  - `cv` / `resume`: Triggers direct download of the latest PDF resume.
-  - `contact`: Scrolls to the contact form and displays social links.
-  - `clear`: Purges terminal history.
-  - `exit`: Closes the terminal window.
-
-### 🌦️ Immersive Weather Effects
-Dynamic, full-screen particle systems triggered directly by the CLI.
-- **Rain (`rain`)**: Realistic falling rain with glassmorphism interactions.
-- **Snow (`snow`)**: Calm, slow-falling snow for a winter aesthetic.
-- **Control**: Effects automatically clear after **15 seconds** to maintain performance, or can be stopped manually using the `end` command.
-
-### 🎭 Universal Staggered Entrance
-A proprietary animation system using **Framer Motion** variants. Every section (Banner, Skills, Experience, Projects, Contact, Footer) reveals its children sequentially for a "perfect landing page" flow.
-
-### 💎 Premium Tech Aesthetic
-- **Glassmorphism**: Consistent design system using `backdrop-filter`, semi-transparent borders, and HSL-tailored accent colors.
-- **Floating Utilities**: Scroll-aware "Back to Top" button and interactive terminal toggle.
-- **Mobile-First Optimization**: Custom CSS media queries for high-fidelity rendering on all screen sizes.
-
-## 🛠️ Tech Stack
-
-- **Frontend**: React.js 18
-- **Styling**: Vanilla CSS, React Bootstrap
-- **Animations**: Framer Motion, Animate.css
-- **Backend (Contact)**: Node.js / Serverless API integration
-- **Building**: Vite (Lightning fast HMR)
-
-## 📦 Project Structure
-
-```text
-src/
-├── assets/          # Images, logos, and icons
-├── components/      # UI Components (NavBar, WeatherEffects, Terminal, etc.)
-├── api/             # API handlers (e.g., Contact form)
-└── App.jsx          # Main application architecture
-```
+## 🚀 Experience the Engineering
+[Launch Portfolio] https://naveenkumar-portfolio-puce.vercel.app/
 
 ---
-*Designed and built by Naveen Kumar — 2026*
+
+## 🛠️ Key Engineering Showcases
+
+### 🧬 X-Ray V5: Deep Telemetry System
+The crown jewel of the portfolio's observability suite. X-Ray V5 provides a real-time, high-density stream of browser and system diagnostics.
+- **Network Observability**: Dual-stream monitoring of connection types (4G, WLAN), effective latency (RTT), and downlink speed.
+- **Hardware Metrics**: Real-time battery lifecycle tracking, hardware concurrency (core count), and device pixel density.
+- **Performance Vitals**: Capture of Web Vitals including **First Contentful Paint (FCP)** and navigation types.
+- **Lifecycle Tracking**: Dynamic logging of page visibility, focus states, and browser localization settings.
+
+### 🗺️ Infrastructure Map V2: System Topology
+An interactive, SVG-based architectural schematic that visualizes the project's underlying serverless stack.
+- **Live Traffic Simulator**: A manual diagnostic mode that triggers high-speed request/response pulses throughout the architecture.
+- **Node Documentation**: Technical breakdowns of every system component (Vercel Edge, Serverless API, Vercel Analytics, SMTP Mailer).
+- **Pro-Visuals**: Implementation of SVG filters, glow effects, and a technical coordination grid for a clean "infrastructure-as-code" aesthetic.
+
+### 📟 Developer CLI (Terminal V2)
+A fully functional React-based terminal emulator that serves as the primary control center for the site's advanced features.
+- **Advanced UX**: Ghost suggestions, tab-completion, and full command history traversal (Up/Down arrow keys).
+- **Embedded Controls**: Direct orchestration of weather effects, Dev modes, and navigation.
+
+### 📊 Live System Dashboard
+A dedicated monitoring panel for real-time session health.
+- **Uptime Tracking**: Millisecond-accurate session timers.
+- **Network Latency**: Simulated ping diagnostics to verify operational status of core services.
+- **Operational Health**: Pulse-indicators for API and Analytics connectivity.
+
+---
+
+## ✨ Design & Performance
+- **3D Interactive Orchestration**: High-performance "Project Parallax" implemented using custom tilt physics.
+- **Universal Staggered Entrance**: A proprietary animation system using **Framer Motion** that ensures a fluid, sequential reveal of all DOM elements.
+- **Glassmorphism Design System**: A consistent visual language built on HSL-tailored colors, `backdrop-filter` blurs, and semi-transparent structural borders.
+
+---
+
+## 🏗️ The Stack
+- **Core**: React 19 / Vite (Extreme HMR performance)
+- **Logic**: Node.js Serverless (Vercel Functions)
+- **Email**: Secure SMTP Layer (Nodemailer / Gmail integration)
+- **Animation**: Framer Motion 12
+- **Observability**: Custom Browser API Hooks
+
+---
+*Developed with technical precision by Naveen Kumar — 2026*
