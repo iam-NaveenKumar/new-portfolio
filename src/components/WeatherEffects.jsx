@@ -12,7 +12,7 @@ const WeatherEffects = ({ type }) => {
       <AnimatePresence>
         {particles.map((_, i) => (
           <motion.div
-            key={i}
+            key={`${type}-${i}`}
             className={`particle ${type}`}
             initial={{ 
               top: '-10%', 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Analytics } from "@vercel/analytics/react"
 import NavBar from './components/NavBar';
 import Banner from './components/Banner';
@@ -24,6 +24,15 @@ function App() {
 
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [activeWeather, setActiveWeather] = useState(null);
+
+  useEffect(() => {
+    if (activeWeather) {
+      const timer = setTimeout(() => {
+        setActiveWeather(null);
+      }, 15000);
+      return () => clearTimeout(timer);
+    }
+  }, [activeWeather]);
 
   useEffect(() => {
     const handleScroll = () => {

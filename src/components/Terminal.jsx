@@ -45,13 +45,11 @@ const Terminal = ({ setWeather }) => {
     },
     rain: () => {
       setWeather('rain');
-      setTimeout(() => setWeather(null), 15000);
-      return 'Rain initialized. Effect will last 15s. Type "end" to stop.';
+      return 'Rain initialized (15s). Type "end" to stop.';
     },
     snow: () => {
       setWeather('snow');
-      setTimeout(() => setWeather(null), 15000);
-      return 'Snow initialized. Effect will last 15s. Type "end" to stop.';
+      return 'Snow initialized (15s). Type "end" to stop.';
     },
     end: () => {
       setWeather(null);
