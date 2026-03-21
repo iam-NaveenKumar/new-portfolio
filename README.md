@@ -1,140 +1,36 @@
-# ⚡ Interactive Engineering Portfolio — Naveen Kumar
+# 🌌 Naveen's Interactive Developer Portfolio
 
-An **interactive, motion-driven developer portfolio** designed as a live experimentation environment for frontend engineering, browser diagnostics, and developer-centric user experience patterns.
+Welcome to the source code of my personal portfolio! I designed this project to be more than just a scrolling webpage—it is a fully interactive, systems-level experience built for developers and recruiters alike to explore my work through a unique UI.
 
-Instead of a traditional static showcase, this project explores **terminal-based navigation, runtime environment insights, and conceptual architecture storytelling** to demonstrate engineering curiosity and product thinking.
+I am an Information Technology student focused on bringing scalable backend engineering, AI applications, and highly polished modern web development together. 
 
-🔗 **Live Demo**  
-👉 https://naveenkumar-portfolio-puce.vercel.app/
+## ✨ Standout Features
 
----
+Instead of just listing my skills, I built systems that *prove* them. Here are the core features powering this portfolio:
 
-## 🚀 Engineering Highlights
+- **The Developer Terminal (`>_`)**: 
+  A fully functional custom-built OS terminal hidden in the bottom right corner. It accepts real commands—try typing `help` to see what you can do (or type `play` to launch a retro ASCII Hacker mini-game locked inside!).
+  
+- **3D Cosmic Skill Universe (WebGL)**: 
+  Triggered by typing `> render 3d` in the terminal, this feature drops a fully interactive, immersive 3D solar system over the UI built with **React Three Fiber**. Every planet represents a layer of my tech stack (React, Node, Python, Java, etc.) and physically orbits a massive, pulsating Sun that displays my core telemetry.
 
-### 📟 **Developer Terminal Interface**
+- **vCard Export Generator**: 
+  A custom utility linked to the "Save Contact 📇" button that dynamically compiles a `.vcf` file natively in the browser, allowing recruiters to reliably import my phone number, email, and website data straight to their phone's address book with one click.
 
-A custom **React-based CLI emulator** that acts as an alternative interaction layer across the application.
+- **Dynamic Weather System**: 
+  Using the terminal, users can toggle `> rain` or `> snow` commands to overlay high-performance CSS/Canvas environment effects over the entire UI globally.
 
-**Capabilities**
+- **X-Ray Developer Mode**: 
+  A structural component inspector (like Chrome DevTools) that highlights React component bounding boxes and feeds the layout telemetry straight into the reactive "Kernel Logs" panel.
 
-- Command history traversal using keyboard navigation  
-- Tab-based command suggestions  
-- Hidden contextual commands  
-- Navigation orchestration through terminal input  
-- Simulated developer console interaction experience  
+- **System Dashboard & Infrastructure Map**:
+  Interactive overlays that map out the backend topology and emulate server telemetry metrics dynamically to prove a deep understanding of architecture.
 
-This module explores how **command-driven UX patterns** can improve engagement and information density in web products.
+## 🛠 Tech Stack
 
----
+- **Frontend Core**: React.js, Vite
+- **Styling**: Vanilla CSS (Glassmorphism & Custom CSS Variables), React Bootstrap
+- **Animations**: Framer Motion
+- **3D Rendering Engine**: Three.js, React Three Fiber (`@react-three/drei`)
+- **Analytics**: Vercel Analytics
 
-### 📊 **Real-Time Browser Diagnostics**
-
-A client-side monitoring panel that visualises runtime browser and device signals using modern Web APIs.
-
-**Diagnostics include**
-
-- Network information — connection type, estimated bandwidth, RTT  
-- Hardware signals — logical CPU cores, device pixel ratio  
-- Battery lifecycle monitoring  
-- Page visibility and focus tracking  
-- Performance timing indicators such as **First Contentful Paint**
-
-This feature demonstrates lightweight **browser-level observability experiments** in frontend applications.
-
----
-
-### 🗺️ **Interactive Architecture Visualisation**
-
-A conceptual infrastructure map illustrating how the portfolio is deployed on a **serverless web stack**.
-
-**Key aspects**
-
-- SVG-driven topology rendering  
-- Simulated request-flow visualisation  
-- Component-level technical explanations  
-- Visual storytelling of frontend → serverless → integration flow  
-
-Designed to improve clarity in communicating **system structure and deployment flow**.
-
----
-
-### 🌧️ **Dynamic Weather Rendering (Rain / Snow Modes)**
-
-Optional environmental rendering modes simulate rain and snowfall using lightweight particle animation.
-
-**Engineering exploration goals**
-
-- Evaluate continuous animation performance under sustained rendering load  
-- Observe frame-rate stability during transform-based motion updates  
-- Study perceived performance alongside motion-heavy UI transitions  
-- Provide real-time toggles to experiment with visual load  
-
-**Implementation approach**
-
-- Transform + opacity-driven particle movement for efficient compositing  
-- Controlled spawn density to minimise layout recalculation  
-- Terminal-triggered activation for developer experimentation  
-- Designed to maintain smooth interaction responsiveness  
-
-This module explores balancing **aesthetic motion systems with runtime performance constraints**.
-
----
-
-### ✨ **Motion-Driven Interaction System**
-
-The interface focuses on perceived performance and progressive visual flow.
-
-- Sequential component entrances using **Framer Motion**  
-- Tilt-based parallax interaction experiments  
-- Glass-inspired visual system using modern CSS features  
-- Transition tuning for consistent frame pacing  
-
----
-
-## 🏗️ Tech Stack
-
-**Frontend**
-
-- React  
-- Vite  
-- Framer Motion  
-- Modern CSS (Transforms, Backdrop Filters, Compositing)
-
-**Backend**
-
-- Node.js Serverless Functions (Vercel)
-
-**Integrations**
-
-- SMTP Email Handling (Nodemailer)  
-- Analytics Instrumentation  
-- Browser Performance & Environment APIs  
-
----
-
-## 🎯 Engineering Intent
-
-This portfolio acts as an **experimentation platform** to:
-
-- Explore advanced interaction patterns beyond traditional navigation  
-- Understand browser runtime signals and performance characteristics  
-- Communicate architectural thinking visually  
-- Simulate developer-tool style experiences in the browser  
-- Build portfolio interfaces that behave like real products  
-
----
-
-## 📈 Future Improvements
-
-- Deeper backend performance instrumentation  
-- AI-powered interaction modules  
-- Telemetry aggregation dashboards  
-- Expanded terminal command ecosystem  
-- Engineering case studies for individual projects  
-
----
-
-## 👨‍💻 Author
-
-**Naveen Kumar**  
-Interactive Web Engineering & System Exploration — 2025
