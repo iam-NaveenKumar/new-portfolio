@@ -70,6 +70,19 @@ function Banner() {
         }
     };
 
+    const generateVCard = () => {
+        const vcard = `BEGIN:VCARD\nVERSION:3.0\nFN:Naveen Kumar\nTITLE:Software Engineer\nTEL;TYPE=CELL:8525926626\nURL:${window.location.origin}\nNOTE:Instagram: _i.am.naveen_\nEND:VCARD`;
+        const blob = new Blob([vcard], { type: 'text/vcard' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'Naveen_Kumar.vcf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+    };
+
     return (
         <section className="banner" id="home" data-component="Banner">
             <Container>
@@ -89,21 +102,40 @@ function Banner() {
                             <motion.p variants={itemVariants} style={{ fontSize: '1.2rem', marginTop: '20px', color: 'var(--text-muted)' }}>
                                 Information Technology student focused on AI applications, backend engineering, and modern web development.
                             </motion.p>
-                            <motion.button 
-                                variants={itemVariants}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                onClick={() => window.location.href='#connect'}
-                                style={{
-                                    marginTop: '40px',
-                                    background: 'linear-gradient(90deg, var(--accent-color), var(--accent-secondary))',
-                                    padding: '15px 35px',
-                                    borderRadius: '50px',
-                                    fontSize: '1.1rem'
-                                }}
-                            >
-                                Let's Connect <BsArrowRightCircle />
-                            </motion.button>
+                            <div style={{ display: 'flex', gap: '20px', marginTop: '40px', flexWrap: 'wrap' }}>
+                                <motion.button 
+                                    variants={itemVariants}
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    onClick={() => window.location.href='#connect'}
+                                    style={{
+                                        background: 'linear-gradient(90deg, var(--accent-color), var(--accent-secondary))',
+                                        padding: '15px 35px',
+                                        borderRadius: '50px',
+                                        fontSize: '1.1rem',
+                                        border: 'none',
+                                        color: '#fff'
+                                    }}
+                                >
+                                    Let's Connect <BsArrowRightCircle />
+                                </motion.button>
+                                <motion.button 
+                                    variants={itemVariants}
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    onClick={generateVCard}
+                                    style={{
+                                        background: 'transparent',
+                                        border: '2px solid var(--accent-color)',
+                                        color: '#fff',
+                                        padding: '15px 35px',
+                                        borderRadius: '50px',
+                                        fontSize: '1.1rem'
+                                    }}
+                                >
+                                    Save Contact
+                                </motion.button>
+                            </div>
                         </motion.div>
                     </Col>
                     <Col xs={12} md={6} xl={5}>

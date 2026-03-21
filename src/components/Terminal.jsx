@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Terminal = ({ setWeather, toggleDashboard, toggleXray, toggleInfraMap }) => {
+const Terminal = ({ setWeather, toggleDashboard, toggleXray, toggleInfraMap, toggle3DMode }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
   const [history, setHistory] = useState([
@@ -12,11 +12,37 @@ const Terminal = ({ setWeather, toggleDashboard, toggleXray, toggleInfraMap }) =
   const [historyIndex, setHistoryIndex] = useState(-1);
   const [input, setInput] = useState('');
   const [suggestion, setSuggestion] = useState('');
+  const [isGameActive, setIsGameActive] = useState(false);
+  const [gameWord, setGameWord] = useState('');
+  const [gameGuessed, setGameGuessed] = useState([]);
+  const [gameAttempts, setGameAttempts] = useState(6);
   const terminalRef = useRef(null);
   const inputRef = useRef(null);
 
+  const HANGMAN_ASCII = [
+    "  ┌─────────┐\n  │         │\n  │\n  │\n  │\n  │\n ─┴─",
+    "  ┌─────────┐\n  │         │\n  │         O\n  │\n  │\n  │\n ─┴─",
+    "  ┌─────────┐\n  │         │\n  │         O\n  │         │\n  │\n  │\n ─┴─",
+    "  ┌─────────┐\n  │         │\n  │         O\n  │        /│\n  │\n  │\n ─┴─",
+    "  ┌─────────┐\n  │         │\n  │         O\n  │        /│\\\n  │\n  │\n ─┴─",
+    "  ┌─────────┐\n  │         │\n  │         O\n  │        /│\\\n  │        /\n  │\n ─┴─",
+    "  ┌─────────┐\n  │         │\n  │         O\n  │        /│\\\n  │        / \\\n  │\n ─┴─"
+  ];
+
+  const WORDS = [
+    "pointer", "boolean", "compiler", "runtime", "integer", "object", "promise",
+    "thread", "socket", "kernel", "syntax", "package", "library", "closure",
+    "gateway", "backend", "frontend", "network", "storage", "process", "handler",
+    "iterator", "adapter", "builder", "factory",
+    "polymorphism", "encapsulation", "abstraction", "multithreading", "synchronization",
+    "serialization", "virtualization", "concurrency", "distributed", "optimization",
+    "authentication", "containerization", "microservices", "orchestration", "infrastructure",
+    "parallelism", "immutability", "idempotency", "refactoring", "dependency",
+    "transactional", "interoperability", "observability"
+  ];
+
   const commands = {
-    help: 'Commands: about, stack, systems, projects, cv, rain, snow, dashboard, xray, infrastructure, ping, ls, clear, exit',
+    help: 'Commands: play, render 3d, about, stack, systems, projects, cv, rain, snow, dashboard, xray, infrastructure, ping, ls, clear, exit',
     about: 'Naveen Kumar — Engineering student focused on building AI-powered learning systems and production-ready web backends.',
     stack: () => {
       document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' });
@@ -39,6 +65,14 @@ const Terminal = ({ setWeather, toggleDashboard, toggleXray, toggleInfraMap }) =
     contact: () => {
       document.getElementById('connect')?.scrollIntoView({ behavior: 'smooth' });
       return 'Instagram: _i.am.naveen_ | Directing to contact section...';
+    },
+    play: () => {
+      const word = WORDS[Math.floor(Math.random() * WORDS.length)].toLowerCase();
+      setGameWord(word);
+      setGameGuessed([]);
+      setGameAttempts(6);
+      setIsGameActive(true);
+      return `SYSTEM LOCKDOWN INITIATED.\nBypass required. Guess the ${word.length}-letter tech keyword.\nType a single letter to guess. Type "exit" to abort.\n\n${HANGMAN_ASCII[0]}\nWord: ${word.split('').map(() => '_').join(' ')}\nAttempts remaining: 6`;
     },
     rain: () => {
       setWeather('rain');
@@ -70,6 +104,13 @@ const Terminal = ({ setWeather, toggleDashboard, toggleXray, toggleInfraMap }) =
     infra: () => {
       toggleInfraMap();
       return 'Opening Infrastructure Map... Visualizing System Topology.';
+    },
+    'render 3d': () => {
+      toggle3DMode && toggle3DMode(true);
+      return 'INITIALIZING WEBGL SUBSYSTEM...\nRendering 3D Cyber Core.';
+    },
+    render: () => {
+      return 'Error: missing arguments. Usage: render 3d';
     },
     map: () => {
       toggleInfraMap();
@@ -113,6 +154,48 @@ const Terminal = ({ setWeather, toggleDashboard, toggleXray, toggleInfraMap }) =
       if (cmd !== '') {
         setCommandHistory(prev => [input, ...prev]);
         setHistoryIndex(-1);
+      }
+
+      if (isGameActive) {
+        if (cmd === 'exit' || cmd === 'quit') {
+            setIsGameActive(false);
+            newHistory.push({ type: 'output', content: 'SYSTEM LOCKDOWN ABORTED. Normal operations resumed.' });
+        } else if (cmd.length !== 1 || !/[a-z]/.test(cmd)) {
+            newHistory.push({ type: 'output', content: 'Invalid input. Please type a single letter.' });
+        } else {
+            const letter = cmd;
+            let updatedGuessed = [...gameGuessed];
+            let attempts = gameAttempts;
+            
+            if (updatedGuessed.includes(letter)) {
+                 newHistory.push({ type: 'output', content: `You already guessed '${letter}'.` });
+            } else {
+                 updatedGuessed.push(letter);
+                 setGameGuessed(updatedGuessed);
+                 if (!gameWord.includes(letter)) {
+                     attempts -= 1;
+                     setGameAttempts(attempts);
+                 }
+                 
+                 const displayWord = gameWord.split('').map(l => updatedGuessed.includes(l) ? l : '_').join(' ');
+                 const mistakes = 6 - attempts;
+                 const hangmanArt = HANGMAN_ASCII[mistakes];
+                 
+                 if (!displayWord.includes('_')) {
+                     newHistory.push({ type: 'output', content: `\n${hangmanArt}\n\nACCESS GRANTED! The keyword was ${gameWord.toUpperCase()}.\nSystem unlocked.` });
+                     setIsGameActive(false);
+                 } else if (attempts <= 0) {
+                     newHistory.push({ type: 'output', content: `\n${hangmanArt}\n\nCRITICAL FAILURE. Out of attempts.\nThe keyword was ${gameWord.toUpperCase()}.\nSystem formatting... Just kidding. Unlock failed.` });
+                     setIsGameActive(false);
+                 } else {
+                     newHistory.push({ type: 'output', content: `Guess accepted: ${letter}\n\n${hangmanArt}\nWord: ${displayWord}\nAttempts remaining: ${attempts}\nGuessed: ${updatedGuessed.join(', ')}` });
+                 }
+            }
+        }
+        setHistory(newHistory);
+        setInput('');
+        setSuggestion('');
+        return;
       }
 
       if (cmd === 'clear') {
@@ -245,7 +328,7 @@ const Terminal = ({ setWeather, toggleDashboard, toggleXray, toggleInfraMap }) =
             
             <div ref={terminalRef} style={{ flexGrow: 1, overflowY: 'auto', marginBottom: '10px', fontSize: '14px', scrollbarWidth: 'none' }}>
               {history.map((line, i) => (
-                <div key={i} style={{ marginBottom: '8px', color: line.type === 'input' ? '#AA367C' : '#fff', opacity: line.type === 'system' ? 0.7 : 1 }}>
+                <div key={i} style={{ marginBottom: '8px', color: line.type === 'input' ? '#AA367C' : '#fff', opacity: line.type === 'system' ? 0.7 : 1, whiteSpace: 'pre-wrap', fontFamily: '"Fira Code", monospace' }}>
                   {line.content}
                 </div>
               ))}

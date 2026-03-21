@@ -12,6 +12,7 @@ import WeatherEffects from './components/WeatherEffects';
 import SystemDashboard from './components/SystemDashboard';
 import KernelLogs from './components/KernelLogs';
 import InfrastructureMap from './components/InfrastructureMap';
+import CyberObject from './components/CyberObject';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -30,6 +31,7 @@ function App() {
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
   const [isXrayMode, setIsXrayMode] = useState(false);
   const [isInfraMapOpen, setIsInfraMapOpen] = useState(false);
+  const [is3DMode, setIs3DMode] = useState(false);
 
   useEffect(() => {
     if (activeWeather) {
@@ -66,6 +68,10 @@ function App() {
 
   const toggleInfraMap = (value) => {
     setIsInfraMapOpen(prev => (typeof value === 'boolean' ? value : !prev));
+  };
+
+  const toggle3DMode = (value) => {
+    setIs3DMode(prev => (typeof value === 'boolean' ? value : !prev));
   };
 
   // Component Inspector Logic
@@ -130,6 +136,7 @@ function App() {
           toggleDashboard={toggleDashboard}
           toggleXray={toggleXray}
           toggleInfraMap={toggleInfraMap}
+          toggle3DMode={toggle3DMode}
         />
         
         <WeatherEffects type={activeWeather} />
@@ -155,6 +162,7 @@ function App() {
           />
         )}
       </AnimatePresence>
+      <CyberObject isOpen={is3DMode} onClose={() => setIs3DMode(false)} />
       </div>
 
       <Analytics />
