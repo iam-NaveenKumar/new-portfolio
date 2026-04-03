@@ -95,33 +95,42 @@ function Banner() {
                             viewport={{ once: true }}
                         >
                             <motion.span variants={itemVariants} className="tagline">Welcome to my Portfolio</motion.span>
-                            <motion.h1 variants={itemVariants} style={{ fontSize: '4.5rem', fontWeight: '800', lineHeight: '1.1' }}>
+                            <motion.h1 
+                                variants={itemVariants} 
+                                style={{ 
+                                    fontSize: 'clamp(2.5rem, 8vw, 4.5rem)', 
+                                    fontWeight: '800', 
+                                    lineHeight: '1.1',
+                                    letterSpacing: '-1px'
+                                }}
+                            >
                                 {`Hi! I'm Naveen Kumar `} <br />
                                 <span className="wrap" style={{ color: 'var(--accent-color)' }}>{text}</span>
                             </motion.h1>
-                            <motion.p variants={itemVariants} style={{ fontSize: '1.2rem', marginTop: '20px', color: 'var(--text-muted)' }}>
+                            <motion.p variants={itemVariants} style={{ fontSize: 'clamp(1rem, 2vw, 1.2rem)', marginTop: '20px', color: 'var(--text-muted)', maxWidth: '600px' }}>
                                 Information Technology student focused on AI applications, backend engineering, and modern web development.
                             </motion.p>
                             <div style={{ display: 'flex', gap: '20px', marginTop: '40px', flexWrap: 'wrap' }}>
                                 <motion.button 
                                     variants={itemVariants}
-                                    whileHover={{ scale: 1.05 }}
+                                    whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(170, 54, 124, 0.4)' }}
                                     whileTap={{ scale: 0.95 }}
-                                    onClick={() => window.location.href='#connect'}
+                                    onClick={() => document.getElementById('connect')?.scrollIntoView({ behavior: 'smooth' })}
                                     style={{
                                         background: 'linear-gradient(90deg, var(--accent-color), var(--accent-secondary))',
                                         padding: '15px 35px',
                                         borderRadius: '50px',
                                         fontSize: '1.1rem',
                                         border: 'none',
-                                        color: '#fff'
+                                        color: '#fff',
+                                        fontWeight: '700'
                                     }}
                                 >
                                     Let's Connect <BsArrowRightCircle />
                                 </motion.button>
                                 <motion.button 
                                     variants={itemVariants}
-                                    whileHover={{ scale: 1.05 }}
+                                    whileHover={{ scale: 1.05, background: 'rgba(170, 54, 124, 0.1)' }}
                                     whileTap={{ scale: 0.95 }}
                                     onClick={generateVCard}
                                     style={{
@@ -130,7 +139,8 @@ function Banner() {
                                         color: '#fff',
                                         padding: '15px 35px',
                                         borderRadius: '50px',
-                                        fontSize: '1.1rem'
+                                        fontSize: '1.1rem',
+                                        fontWeight: '700'
                                     }}
                                 >
                                     Save Contact
@@ -140,19 +150,44 @@ function Banner() {
                     </Col>
                     <Col xs={12} md={6} xl={5}>
                         <motion.div
-                            animate={{
-                                y: [0, -20, 0],
-                            }}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1, y: [0, -20, 0] }}
                             transition={{
-                                duration: 4,
-                                repeat: Infinity,
-                                ease: "easeInOut"
+                                opacity: { duration: 1 },
+                                scale: { duration: 1 },
+                                y: { duration: 4, repeat: Infinity, ease: "easeInOut" }
                             }}
                         >
-                            <img src={myimg} alt="Banner Image" style={{ width: '90%', filter: 'drop-shadow(0 0 30px rgba(170, 54, 124, 0.3))' }} />
+                            <img src={myimg} alt="Banner Image" style={{ width: '100%', maxWidth: '500px', margin: '0 auto', display: 'block', filter: 'drop-shadow(0 0 30px rgba(170, 54, 124, 0.3))' }} />
                         </motion.div>
                     </Col>
                 </Row>
+                
+                {/* Scroll Down Indicator */}
+                <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 2, duration: 1 }}
+                    style={{
+                        position: 'absolute',
+                        bottom: '30px',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        gap: '10px',
+                        cursor: 'pointer'
+                    }}
+                    onClick={() => document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                    <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '2px' }}>Scroll</span>
+                    <motion.div
+                        animate={{ y: [0, 10, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                        style={{ width: '2px', height: '50px', background: 'linear-gradient(to bottom, var(--accent-color), transparent)' }}
+                    />
+                </motion.div>
             </Container>
         </section>
     );
