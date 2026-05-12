@@ -25,7 +25,7 @@ function Skills() {
     },
     {
       category: "Domains",
-      skills: ["Frontend Development", "Backend Fundamentals", "API Integration", "AI Applications"],
+      skills: ["Frontend", "Backend", "System Design"," REST APIs","Computer Networking", "AI Applications"],
     },
   ];
 
@@ -47,7 +47,7 @@ function Skills() {
   };
 
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 10, opacity: 0 },
     visible: { y: 0, opacity: 1 }
   };
 
@@ -75,6 +75,8 @@ function Skills() {
                 autoPlay={true}
                 autoPlaySpeed={3000}
                 className="skills-slider"
+                partialVisible={false}
+                centerMode={false}
               >
                 {skillsData.map((item, index) => (
                   <div key={index} className="skill-category-card-wrapper">
@@ -84,9 +86,8 @@ function Skills() {
                       initial="hidden"
                       whileInView="visible"
                       viewport={{ once: true }}
-                      style={{ background: 'var(--glass-bg)', backdropFilter: 'var(--glass-blur)', border: '1px solid var(--glass-border)' }}
                     >
-                      <h3 style={{ color: 'var(--accent-color)', marginBottom: '20px', fontWeight: '700' }}>{item.category}</h3>
+                      <h3 className="skill-category-title">{item.category}</h3>
                       <div className="d-flex flex-wrap justify-content-center gap-2 mt-3">
                         {item.skills.map((skill, i) => (
                           <motion.span 
@@ -94,13 +95,6 @@ function Skills() {
                             className="skill-tag"
                             variants={itemVariants}
                             whileHover={{ scale: 1.1, backgroundColor: 'var(--accent-color)', color: '#fff' }}
-                            style={{ 
-                              background: 'rgba(255,255,255,0.05)', 
-                              padding: '8px 16px', 
-                              borderRadius: '20px', 
-                              fontSize: '0.9rem',
-                              border: '1px solid var(--glass-border)'
-                            }}
                           >
                             {skill}
                           </motion.span>

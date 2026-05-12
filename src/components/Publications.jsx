@@ -6,42 +6,19 @@ const PublicationCard = ({ title, conference, details, link }) => {
     <motion.div 
       className="publication-box h-100"
       whileHover={{ y: -5 }}
-      style={{ 
-        background: 'var(--glass-bg)', 
-        backdropFilter: 'var(--glass-blur)', 
-        border: '1px solid var(--glass-border)',
-        padding: '30px',
-        borderRadius: '24px',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '20px',
-        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)'
-      }}
     >
       <div style={{ flex: 1 }}>
-        <h4 style={{ color: 'var(--accent-color)', fontWeight: '700', fontSize: '1.5rem', marginBottom: '15px' }}>{title}</h4>
+        <h4 className="publication-title">{title}</h4>
         
         <div style={{ marginBottom: '20px' }}>
-          <p style={{ 
-            color: 'var(--text-main)', 
-            fontSize: '1rem', 
-            fontWeight: '600',
-            lineHeight: '1.4',
-            marginBottom: '5px'
-          }}>
+          <p className="publication-conference">
             {conference}
           </p>
         </div>
 
-        <ul style={{ 
-          color: 'var(--text-muted)', 
-          fontSize: '0.95rem', 
-          lineHeight: '1.6', 
-          paddingLeft: '20px',
-          listStyleType: 'disc'
-        }}>
+        <ul className="publication-details">
           {details.map((point, index) => (
-            <li key={index} style={{ marginBottom: '10px' }}>{point}</li>
+            <li key={index}>{point}</li>
           ))}
         </ul>
       </div>
@@ -51,22 +28,9 @@ const PublicationCard = ({ title, conference, details, link }) => {
           href={link} 
           target="_blank" 
           rel="noopener noreferrer"
+          className="publication-link"
           whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
           whileTap={{ scale: 0.95 }}
-          style={{ 
-            background: 'transparent', 
-            color: 'var(--text-main)', 
-            border: '1px solid rgba(255, 255, 255, 0.5)', 
-            padding: '8px 24px', 
-            borderRadius: '50px', 
-            fontSize: '1rem', 
-            fontWeight: '500',
-            textDecoration: 'none',
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '10px',
-            transition: 'all 0.3s ease'
-          }}
         >
           <span>Show publication</span>
           <svg 

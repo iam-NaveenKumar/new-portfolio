@@ -26,7 +26,7 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="footer" style={{ padding: '60px 0', background: 'var(--primary-bg)', borderTop: '1px solid var(--glass-border)' }}>
+    <footer className="footer" style={{ padding: '40px 0', background: 'var(--primary-bg)', borderTop: '1px solid var(--glass-border)' }}>
       <Container>
         <motion.div 
           variants={containerVariants}
@@ -35,28 +35,22 @@ export const Footer = () => {
           viewport={{ once: true }}
         >
           <Row className="align-items-center">
-            <Col size={12} sm={6} as={motion.div} variants={itemVariants}>
-              <a href="/" onClick={() => window.location.reload()}>
+            <Col size={12} sm={8} className="d-flex align-items-center gap-4 footer-main-col" as={motion.div} variants={itemVariants}>
+              <a href="/" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
                 <motion.img
                   whileHover={{ rotate: 360, scale: 1.1 }}
                   transition={{ duration: 0.8 }}
                   src={logo}
                   alt="Logo"
-                  style={{ borderRadius: "50%", height: "4rem", width: "4rem", border: "1px solid var(--glass-border)", cursor: "pointer" }}
+                  style={{ borderRadius: "50%", height: "4.5rem", width: "4.5rem", border: "2px solid var(--accent-color)", cursor: "pointer", boxShadow: "0 0 15px rgba(170, 54, 124, 0.3)" }}
                 />
               </a>
-            </Col>
-            <Col size={12} sm={6} className="text-center text-sm-end" as={motion.div} variants={itemVariants}>
-              <div className="social-icon">
-                <motion.a whileHover={{ y: -5 }} href="https://www.linkedin.com/in/naveen-kumar-p-492020290/">
-                  <img src={navIcon1} alt="Icon" />
-                </motion.a>
-                <motion.a whileHover={{ y: -5 }} href="https://www.instagram.com/_i.am.naveen_/">
-                  <img src={navIcon3} alt="Icon" />
-                </motion.a>
+              <div className="footer-text-block">
+                <h4>Did you try my CLI yet? No?</h4>
+                <p>Click the button on the right →</p>
               </div>
-              
             </Col>
+           
           </Row>
         </motion.div>
       </Container>

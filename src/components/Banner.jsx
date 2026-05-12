@@ -12,7 +12,7 @@ import { useRef } from 'react';
 function Banner() {
     const [loopNum, setLoopNum] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
-    const toRotate = ["Web Developer", "Backend Developer", "AI Enthusiast", "Software Engineer", "UI / UX Designer"];
+    const toRotate = ["Backend Developer","AI Systems Builder","Full stack Developer","React Developer","Software Engineer"];
     const [text, setText] = useState('');
     const period = 2000;
     const [delta, setDelta] = useState(300 - Math.random() * 100);
@@ -35,18 +35,20 @@ function Banner() {
         setText(updatedText);
 
         if (isDeleting) {
-            setDelta(prevDelta => prevDelta / 2);
+            // Consistent deleting speed
+            setDelta(80);
         } else {
-            setDelta(300 - Math.random() * 100);
+            // More consistent typing speed with slight variation
+            setDelta(150 - Math.random() * 50);
         }
 
         if (!isDeleting && updatedText === fullText) {
             setIsDeleting(true);
-            setDelta(period);
+            setDelta(period); // Pause at end of word
         } else if (isDeleting && updatedText === '') {
             setIsDeleting(false);
             setLoopNum(l => l + 1);
-            setDelta(500);
+            setDelta(500); // Pause before next word
         }
     };
 
@@ -105,7 +107,10 @@ function Banner() {
                                 }}
                             >
                                 {`Hi! I'm Naveen Kumar `} <br />
-                                <span className="wrap" style={{ color: 'var(--accent-color)' }}>{text}</span>
+                                <span className="typing-container">
+                                    <span className="wrap" style={{ color: 'var(--accent-color)' }}>{text || "\u00A0"}</span>
+                                    <span className="cursor"></span>
+                                </span>
                             </motion.h1>
                             <motion.p variants={itemVariants} style={{ fontSize: 'clamp(1rem, 2vw, 1.2rem)', marginTop: '20px', color: 'var(--text-muted)', maxWidth: '600px' }}>
                                 Information Technology student focused on AI applications, backend engineering, and modern web development.

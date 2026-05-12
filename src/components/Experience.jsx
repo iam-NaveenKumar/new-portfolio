@@ -11,9 +11,10 @@ export const Experience = () => {
       company: "CODEGRAMMER",
       duration: "Jan 2026 – Mar 2026",
       description: [
-        "Performed factual accuracy and linguistic audits on large-scale datasets.",
-        "Identified inconsistencies and structured QA reports for senior review.",
-        "Contributed to improving content reliability for the learning platform."
+        "Developed structured video-based learning content using HTML, CSS, and JavaScript by converting provided transcripts and audio into interactive lessons.",
+        "Built a WordPress plugin to connect recruiters and students, enabling job posting and application workflows.",
+        "Integrated resume submission flow by leveraging an external resume-generation plugin for streamlined applications.",
+        "Conducted product reviews of the platform, providing regular feedback and suggesting improvements to enhance usability and workflow."
       ]
     },
     {
@@ -22,7 +23,7 @@ export const Experience = () => {
       duration: "June 2025 – July 2025",
       description: [
         "Built reusable React.js UI components based on design specs.",
-        "Improved responsive layouts using modern CSS techniques.",
+        "Participated in code reviews and improved layout responsiveness.",
         "Collaborated with the team to integrate frontend with backend APIs."
       ]
     }
@@ -46,11 +47,11 @@ export const Experience = () => {
   };
 
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 10, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
-      transition: { duration: 0.8, ease: "easeOut" }
+      transition: { duration: 0.6, ease: "easeOut" }
     }
   };
 
@@ -75,6 +76,8 @@ export const Experience = () => {
                 autoPlaySpeed={3500}
                 className="experience-slider"
                 itemClass="px-2"
+                partialVisible={false}
+                centerMode={false}
               >
                 {experiences.map((exp, index) => (
                   <motion.div 
