@@ -43,7 +43,7 @@ export const Projects = () => {
   const [activeImgIndex, setActiveImgIndex] = useState(0);
 
   // Load all images from the projects folder
-  const projectImages = import.meta.glob('../assets/img/projects/**/*.png', { eager: true, as: 'url' });
+  const projectImages = import.meta.glob('../assets/img/projects/**/*.png', { eager: true, query: '?url', import: 'default' });
 
   const getProjectImages = (folder) => {
     if (!folder) return [];
