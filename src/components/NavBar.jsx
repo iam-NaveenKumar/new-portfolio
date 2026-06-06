@@ -4,6 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import React ,{ useState , useEffect } from 'react';
 import logo from '../assets/img/Naveen-port.png';
 import navIcon1 from '../assets/img/nav-icon1.svg';
+import navIcon2 from '../assets/img/nav-icon2.svg';
 import navIcon3 from '../assets/img/nav-icon3.svg';
 
 import { motion } from 'framer-motion';
@@ -81,6 +82,7 @@ function NavBar() {
                         <span className="navbar-text ms-lg-4">
                             <div className="social-icon d-flex align-items-center me-3">
                                 <motion.a whileHover={{ y: -5, scale: 1.1 }} href="https://www.linkedin.com/in/naveen-kumar-p-492020290/" target="_blank"><img src={navIcon1} alt="linkedin" /></motion.a>
+                                <motion.a whileHover={{ y: -5, scale: 1.1 }} href="https://github.com/iam-NaveenKumar" target="_blank"><img src={navIcon2} alt="github" /></motion.a>
                                 <motion.a whileHover={{ y: -5, scale: 1.1 }} href="https://www.instagram.com/_i.am.naveen_/" target="_blank"><img src={navIcon3} alt="instagram" /></motion.a>
                             </div>
                             <a href="/Naveen_Kumar_Resume.pdf" download="Naveen_Kumar_Resume.pdf" className="vvd-link">

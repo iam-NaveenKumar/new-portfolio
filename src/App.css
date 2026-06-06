@@ -1114,6 +1114,10 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   transition: all 0.3s ease;
 }
 
+.project-link.apk-link {
+  font-size: 0.85rem;
+}
+
 .project-link:hover {
   color: #fff;
   transform: translateX(5px);

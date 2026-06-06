@@ -6,7 +6,7 @@ import colorSharp2 from "../assets/img/color-sharp2.png";
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
-const ProjectCard = ({ title, description, stack, status, link, onClick, folder }) => {
+const ProjectCard = ({ title, description, stack, status, link, apkLink, onClick, folder }) => {
   return (
     <motion.div 
       className="project-box h-100"
@@ -27,11 +27,18 @@ const ProjectCard = ({ title, description, stack, status, link, onClick, folder 
         )}
         <div className="d-flex justify-content-between align-items-center">
           {folder && <span className="gallery-hint">View Gallery →</span>}
-          {link && (
-            <a href={link} target="_blank" rel="noopener noreferrer" className="project-link" onClick={(e) => e.stopPropagation()}>
-              Live Demo →
-            </a>
-          )}
+          <div className="d-flex gap-3">
+            {apkLink && (
+              <a href={apkLink} download className="project-link apk-link" onClick={(e) => e.stopPropagation()}>
+                Download APK ↓
+              </a>
+            )}
+            {link && (
+              <a href={link} target="_blank" rel="noopener noreferrer" className="project-link" onClick={(e) => e.stopPropagation()}>
+                Live Demo →
+              </a>
+            )}
+          </div>
         </div>
       </div>
     </motion.div>
@@ -43,7 +50,7 @@ export const Projects = () => {
   const [activeImgIndex, setActiveImgIndex] = useState(0);
 
   // Load all images from the projects folder
-  const projectImages = import.meta.glob('../assets/img/projects/**/*.png', { eager: true, query: '?url', import: 'default' });
+  const projectImages = import.meta.glob('../assets/img/projects/**/*.{png,jpg,jpeg,webp}', { eager: true, query: '?url', import: 'default' });
 
   const getProjectImages = (folder) => {
     if (!folder) return [];
@@ -66,6 +73,13 @@ export const Projects = () => {
   };
 
   const projects = [
+    {
+      title: "Travel Tracking App",
+      description: "A React Native & Expo app that tracks GPS location in the background (even when locked). It uses the Haversine formula to calculate distance and automatically triggers the system call dialer and a high-priority notification to alert family when approaching a destination. Built with TypeScript, expo-location, and AsyncStorage.",
+      stack: "React Native, Expo, TypeScript, expo-location, AsyncStorage",
+      folder: "travel-tracker",
+      apkLink: "/travel-tracker.apk"
+    },
     {
       title: "AI-Powered Learning Tutor",
       description: "Adaptive AI tutor generating lessons, quizzes, and summaries based on learner level. Focused on caching and AI orchestration.",
