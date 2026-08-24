@@ -1,15 +1,19 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Modal } from "react-bootstrap";
+import { useState } from 'react';
 import { motion } from 'framer-motion';
+import proofImg from '../assets/img/publications/proof.png';
 
 const PublicationCard = ({ title, conference, details, link }) => {
+  const [showProof, setShowProof] = useState(false);
+
   return (
-    <motion.div 
+    <motion.div
       className="publication-box h-100"
       whileHover={{ y: -5 }}
     >
       <div style={{ flex: 1 }}>
         <h4 className="publication-title">{title}</h4>
-        
+
         <div style={{ marginBottom: '20px' }}>
           <p className="publication-conference">
             {conference}
@@ -23,25 +27,25 @@ const PublicationCard = ({ title, conference, details, link }) => {
         </ul>
       </div>
 
-      <div className="text-center mt-3">
-        <motion.a 
-          href={link} 
-          target="_blank" 
+      <div className="d-flex justify-content-center gap-3 mt-3">
+        <motion.a
+          href={link}
+          target="_blank"
           rel="noopener noreferrer"
           className="publication-link"
           whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
           whileTap={{ scale: 0.95 }}
         >
           <span>Show publication</span>
-          <svg 
-            width="18" 
-            height="18" 
-            viewBox="0 0 24 24" 
-            fill="none" 
-            stroke="currentColor" 
-            strokeWidth="2" 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             style={{ marginBottom: '2px' }}
           >
             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
@@ -49,7 +53,30 @@ const PublicationCard = ({ title, conference, details, link }) => {
             <line x1="10" y1="14" x2="21" y2="3"></line>
           </svg>
         </motion.a>
+
+        <motion.button
+          onClick={() => setShowProof(true)}
+          className="publication-link"
+          whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
+          whileTap={{ scale: 0.95 }}
+          style={{ background: 'transparent', border: '1px solid rgba(255, 255, 255, 0.5)', color: '#fff', display: 'flex', alignItems: 'center', gap: '8px' }}
+        >
+          <span>View Proof</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+        </motion.button>
       </div>
+
+      <Modal show={showProof} onHide={() => setShowProof(false)} size="lg" centered>
+        <Modal.Header closeButton closeVariant="white" style={{ background: '#121212', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+          <Modal.Title style={{ color: '#fff' }}>Publication Proof</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="p-0 text-center" style={{ background: '#121212' }}>
+          <img src={proofImg} alt="Publication Proof" className="img-fluid" />
+        </Modal.Body>
+      </Modal>
     </motion.div>
   );
 };
@@ -100,7 +127,7 @@ export const Publications = () => {
               <motion.p variants={itemVariants} style={{ textAlign: 'center', color: 'var(--text-muted)', maxWidth: '800px', margin: '0 auto 50px' }}>
                 Contributing to the academic community through research in AI and Quantum Computing.
               </motion.p>
-              
+
               <Row className="justify-content-center">
                 <Col md={10} lg={8}>
                   <motion.div variants={itemVariants}>

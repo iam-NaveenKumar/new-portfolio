@@ -1,7 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import React ,{ useState , useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from '../assets/img/Naveen-port.png';
 import navIcon1 from '../assets/img/nav-icon1.svg';
 import navIcon2 from '../assets/img/nav-icon2.svg';
@@ -44,28 +44,28 @@ function NavBar() {
             }}>
                 <Container>
                     <Navbar.Brand href="/" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
-                        <motion.img 
+                        <motion.img
                             whileHover={{ scale: 1.1, rotate: 5 }}
-                            src={logo} 
-                            alt="LOGO" 
-                            style={{ 
-                                overflow: "hidden", 
-                                borderRadius: "50%", 
-                                height: "3.5rem", 
-                                width: "3.5rem", 
+                            src={logo}
+                            alt="LOGO"
+                            style={{
+                                overflow: "hidden",
+                                borderRadius: "50%",
+                                height: "3.5rem",
+                                width: "3.5rem",
                                 border: scrolled ? "2px solid var(--accent-color)" : "1px solid #fff",
                                 transition: 'all 0.3s ease'
-                            }} 
+                            }}
                         />
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto align-items-center">
                             {['home', 'skills', 'experience', 'projects', 'publications'].map((link) => (
-                                <Nav.Link 
+                                <Nav.Link
                                     key={link}
-                                    href={`#${link}`} 
-                                    className={activeLink === link ? 'active navbar-link' : 'navbar-link'} 
+                                    href={`#${link}`}
+                                    className={activeLink === link ? 'active navbar-link' : 'navbar-link'}
                                     onClick={() => onUpdateActiveLink(link)}
                                     style={{ padding: '0 20px' }}
                                 >
@@ -86,8 +86,8 @@ function NavBar() {
                                 <motion.a whileHover={{ y: -5, scale: 1.1 }} href="https://www.instagram.com/_i.am.naveen_/" target="_blank"><img src={navIcon3} alt="instagram" /></motion.a>
                             </div>
                             <a href="/Naveen_Kumar_Resume.pdf" download="Naveen_Kumar_Resume.pdf" className="vvd-link">
-                                <motion.button 
-                                    whileHover={{ 
+                                <motion.button
+                                    whileHover={{
                                         scale: 1.05,
                                         boxShadow: '0 0 20px rgba(170, 54, 124, 0.4)',
                                         background: 'linear-gradient(90deg, var(--accent-color), var(--accent-secondary))',
