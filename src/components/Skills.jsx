@@ -13,19 +13,19 @@ function Skills() {
     },
     {
       category: "Web Technologies",
-      skills: ["HTML", "CSS", "React.js", "Bootstrap", "Node.js"],
+      skills: ["HTML", "CSS", "React.js", "Bootstrap", "Node.js", "Express.js"],
     },
     {
       category: "Databases",
-      skills: ["MongoDB"],
+      skills: ["MongoDB", "MySQL", "Firebase firestore"],
     },
     {
       category: "Tools & Platforms",
-      skills: ["Git", "GitHub", "Firebase", "VS Code"],
+      skills: ["Git", "GitHub", "VS Code", "Postman"],
     },
     {
       category: "Domains",
-      skills: ["Frontend", "Backend", "System Design"," REST APIs","Computer Networking", "AI Applications"],
+      skills: ["Frontend", "Backend", "System Design", " REST APIs", "Computer Networking", "AI Applications"],
     },
   ];
 
@@ -56,7 +56,7 @@ function Skills() {
       <Container>
         <Row>
           <Col>
-            <motion.div 
+            <motion.div
               className="skills-bx"
               variants={containerVariants}
               initial="hidden"
@@ -69,9 +69,9 @@ function Skills() {
               <motion.p variants={itemVariants} style={{ color: 'var(--text-muted)' }}>
                 A showcase of my technical expertise and the tools I use to bring ideas to life.
               </motion.p>
-              <Carousel 
-                responsive={responsive} 
-                infinite={true} 
+              <Carousel
+                responsive={responsive}
+                infinite={true}
                 autoPlay={true}
                 autoPlaySpeed={3000}
                 className="skills-slider"
@@ -80,8 +80,8 @@ function Skills() {
               >
                 {skillsData.map((item, index) => (
                   <div key={index} className="skill-category-card-wrapper">
-                    <motion.div 
-                      className="skill-category-card h-100" 
+                    <motion.div
+                      className="skill-category-card h-100"
                       variants={containerVariants}
                       initial="hidden"
                       whileInView="visible"
@@ -90,8 +90,8 @@ function Skills() {
                       <h3 className="skill-category-title">{item.category}</h3>
                       <div className="d-flex flex-wrap justify-content-center gap-2 mt-3">
                         {item.skills.map((skill, i) => (
-                          <motion.span 
-                            key={i} 
+                          <motion.span
+                            key={i}
                             className="skill-tag"
                             variants={itemVariants}
                             whileHover={{ scale: 1.1, backgroundColor: 'var(--accent-color)', color: '#fff' }}

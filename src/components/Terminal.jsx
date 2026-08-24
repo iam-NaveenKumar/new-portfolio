@@ -94,8 +94,18 @@ const Terminal = ({ setWeather, toggleDashboard, toggleXray, toggleInfraMap, tog
       toggleXray();
       return 'Toggle X-Ray structural Dev mode... Blueprints visible.';
     },
-    ping: () => {
-      return `PONG: ${Math.floor(Math.random() * 50 + 20)}ms`;
+    ping: async () => {
+      try {
+        const start = performance.now();
+        await fetch("https://www.naveenkumarp.me/health", {
+          method: "GET",
+          cache: "no-store"
+        });
+        const ms = Math.round(performance.now() - start);
+        return `PONG: ${ms}ms`;
+      } catch (err) {
+        return `PONG failed: server unreachable`;
+      }
     },
     infrastructure: () => {
       toggleInfraMap();
@@ -146,7 +156,7 @@ const Terminal = ({ setWeather, toggleDashboard, toggleXray, toggleInfraMap, tog
     }
   }, [input]);
 
-  const handleCommand = (e) => {
+  const handleCommand = async (e) => {
     if (e.key === 'Enter') {
       const cmd = input.toLowerCase().trim();
       const newHistory = [...history, { type: 'input', content: `> ${input}` }];
@@ -202,10 +212,10 @@ const Terminal = ({ setWeather, toggleDashboard, toggleXray, toggleInfraMap, tog
         setHistory([]);
       } else if (commands[cmd]) {
         if (typeof commands[cmd] === 'function') {
-          const result = commands[cmd]();
+          setHistory(newHistory);
+          const result = await commands[cmd]();
           if (result) {
-            newHistory.push({ type: 'output', content: result });
-            setHistory(newHistory);
+            setHistory(prev => [...prev, { type: 'output', content: result }]);
           }
         } else {
           newHistory.push({ type: 'output', content: commands[cmd] });

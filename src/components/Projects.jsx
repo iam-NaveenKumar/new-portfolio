@@ -108,6 +108,7 @@ export const Projects = () => {
   ];
 
   const miniProjects = [
+    { title: "CI/CD Pipeline", description: "a CI/CD pipeline where a developer pushes code to GitHub. GitHub Actions runs tests on a self-hosted PC runner. If tests fail, deployment stops; if they pass, the app is deployed using PM2 and runs a Node.js/Express server on localhost:3000.", stack: "GitHub Actions, PM2, Node.js", folder: "ci-cd" },
     { title: "Gemini Clone", description: "AI chatbot clone inspired by Google Gemini.", stack: "React, Vite, Gemini API" },
     { title: "Joke Generator App", description: "Fetches and displays jokes using the JokeAPI.", stack: "React, JokeAPI" },
     { title: "FoodLens", description: "A mobile app that helps users identify food items.", stack: "React, Capacitor" },

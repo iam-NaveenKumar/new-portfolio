@@ -8,6 +8,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/health", (req, res) => {
+  res.send("OK");
+});
+
 app.listen(5000, () => console.log("Server Running"));
 
 console.log(process.env.EMAIL_USER);

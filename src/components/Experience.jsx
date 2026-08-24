@@ -11,7 +11,7 @@ export const Experience = () => {
   const [activeImgIndex, setActiveImgIndex] = useState(0);
 
   // Load all images from the credentials folder
-  const credentialImages = import.meta.glob('../assets/img/credentials/**/*.png', { eager: true, query: '?url', import: 'default' });
+  const credentialImages = import.meta.glob('../assets/img/credentials/**/*.{png,jpg,jpeg,webp}', { eager: true, query: '?url', import: 'default' });
 
   const getCredentials = (folder) => {
     if (!folder) return [];
@@ -45,6 +45,18 @@ export const Experience = () => {
         "Built reusable React.js UI components based on design specs.",
         "Participated in code reviews and improved layout responsiveness.",
         "Collaborated with the team to integrate frontend with backend APIs."
+      ]
+    },
+    {
+      title: "Full stack developer Intern",
+      company: "MindFulAI Technologies",
+      duration: "June 2026 – July 2026",
+      folder: "MindfulAI",
+      description: [
+        "Developed a Hospital Waste Management System as a full-stack web application.",
+        "Implemented JWT authentication for secure user login and access control.",
+        "Used MongoDB for storing and managing hospital waste-related data.",
+        "Designed the system to improve waste collection and disposal management"
       ]
     }
   ];
@@ -80,7 +92,7 @@ export const Experience = () => {
       <Container>
         <Row>
           <Col size={12}>
-            <motion.div 
+            <motion.div
               className="experience-bx"
               variants={containerVariants}
               initial="hidden"
@@ -88,10 +100,10 @@ export const Experience = () => {
               viewport={{ once: true }}
             >
               <motion.h2 variants={itemVariants}>Experience</motion.h2>
-              <motion.p variants={itemVariants}>My professional journey and internship experiences.</motion.p>
-              <Carousel 
-                responsive={responsive} 
-                infinite={true} 
+              <motion.p variants={itemVariants}>My internship experiences.</motion.p>
+              <Carousel
+                responsive={responsive}
+                infinite={true}
                 autoPlay={true}
                 autoPlaySpeed={3500}
                 className="experience-slider"
@@ -100,8 +112,8 @@ export const Experience = () => {
                 centerMode={false}
               >
                 {experiences.map((exp, index) => (
-                  <motion.div 
-                    key={index} 
+                  <motion.div
+                    key={index}
                     className="experience-card"
                     variants={itemVariants}
                   >
@@ -138,8 +150,8 @@ export const Experience = () => {
         </Row>
       </Container>
 
-      <Modal 
-        show={!!selectedExp} 
+      <Modal
+        show={!!selectedExp}
         onHide={() => setSelectedExp(null)}
         size="lg"
         centered
@@ -152,8 +164,8 @@ export const Experience = () => {
           <div className="gallery-container">
             <div className="main-image-wrapper">
               {getCredentials(selectedExp?.folder).length > 1 && (
-                <button 
-                  className="gallery-nav-btn prev" 
+                <button
+                  className="gallery-nav-btn prev"
                   onClick={(e) => {
                     e.stopPropagation();
                     const creds = getCredentials(selectedExp?.folder);
@@ -173,8 +185,8 @@ export const Experience = () => {
                   transition={{ duration: 0.2 }}
                   className="credential-display"
                 >
-                  <img 
-                    src={getCredentials(selectedExp?.folder)[activeImgIndex]?.url} 
+                  <img
+                    src={getCredentials(selectedExp?.folder)[activeImgIndex]?.url}
                     alt="Credential"
                     className="img-fluid"
                   />
@@ -185,8 +197,8 @@ export const Experience = () => {
               </AnimatePresence>
 
               {getCredentials(selectedExp?.folder).length > 1 && (
-                <button 
-                  className="gallery-nav-btn next" 
+                <button
+                  className="gallery-nav-btn next"
                   onClick={(e) => {
                     e.stopPropagation();
                     const creds = getCredentials(selectedExp?.folder);
@@ -197,12 +209,12 @@ export const Experience = () => {
                 </button>
               )}
             </div>
-            
+
             {getCredentials(selectedExp?.folder).length > 1 && (
               <div className="thumbnail-strip-wrapper">
                 <div className="thumbnail-strip">
                   {getCredentials(selectedExp?.folder).map((cred, idx) => (
-                    <div 
+                    <div
                       key={idx}
                       className={`thumbnail-item ${idx === activeImgIndex ? 'active' : ''}`}
                       onClick={() => setActiveImgIndex(idx)}
