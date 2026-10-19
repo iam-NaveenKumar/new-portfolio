@@ -8,7 +8,7 @@ import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 const ProjectCard = ({ title, description, stack, status, link, apkLink, onClick, folder }) => {
   return (
-    <motion.div 
+    <motion.div
       className="project-box h-100"
       whileHover={{ y: -5 }}
       onClick={onClick}
@@ -105,6 +105,11 @@ export const Projects = () => {
       stack: "Python, Flask, SQLite, Scapy",
       folder: "network-monitor"
     },
+    {
+      title: "Mini-git",
+      description: "Built a Git-like CLI in Node.js with staging, commits, branching, and checkout, using SHA-1 storage, automated testing, and GitHub Actions CI.",
+      stack: "Node.js, JavaScript, SHA-1, Node.js Test Runner, GitHub Actions"
+    },
   ];
 
   const miniProjects = [
@@ -165,16 +170,16 @@ export const Projects = () => {
                   <Tab.Pane eventKey="first">
                     <Carousel responsive={responsive} infinite={true} autoPlay={!selectedProject} className="project-slider" partialVisible={false} centerMode={false}>
                       {projects.map((project, index) => (
-                        <motion.div 
-                          key={index} 
+                        <motion.div
+                          key={index}
                           className="px-2 h-100"
                           initial={{ opacity: 0, y: 10 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.4, delay: index * 0.1 }}
                           viewport={{ once: true }}
                         >
-                          <ProjectCard 
-                            {...project} 
+                          <ProjectCard
+                            {...project}
                             onClick={() => {
                               if (project.folder) {
                                 setSelectedProject(project);
@@ -189,16 +194,16 @@ export const Projects = () => {
                   <Tab.Pane eventKey="second">
                     <Carousel responsive={responsive} infinite={true} autoPlay={!selectedProject} className="project-slider" partialVisible={false} centerMode={false}>
                       {miniProjects.map((project, index) => (
-                        <motion.div 
-                          key={index} 
+                        <motion.div
+                          key={index}
                           className="px-2 h-100"
                           initial={{ opacity: 0, y: 10 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.4, delay: index * 0.1 }}
                           viewport={{ once: true }}
                         >
-                          <ProjectCard 
-                            {...project} 
+                          <ProjectCard
+                            {...project}
                             onClick={() => {
                               if (project.folder) {
                                 setSelectedProject(project);
@@ -217,8 +222,8 @@ export const Projects = () => {
         </Row>
       </Container>
 
-      <Modal 
-        show={!!selectedProject} 
+      <Modal
+        show={!!selectedProject}
         onHide={() => setSelectedProject(null)}
         size="lg"
         centered
@@ -230,8 +235,8 @@ export const Projects = () => {
         <Modal.Body className="p-0 overflow-hidden">
           <div className="gallery-container">
             <div className="main-image-wrapper">
-              <button 
-                className="gallery-nav-btn prev" 
+              <button
+                className="gallery-nav-btn prev"
                 onClick={(e) => {
                   e.stopPropagation();
                   const imgs = getProjectImages(selectedProject?.folder);
@@ -242,9 +247,9 @@ export const Projects = () => {
               </button>
 
               <AnimatePresence mode="wait">
-                <motion.img 
+                <motion.img
                   key={activeImgIndex}
-                  src={getProjectImages(selectedProject?.folder)[activeImgIndex]} 
+                  src={getProjectImages(selectedProject?.folder)[activeImgIndex]}
                   alt="Project Screenshot"
                   className="img-fluid main-gallery-img"
                   initial={{ opacity: 0, scale: 0.95 }}
@@ -254,8 +259,8 @@ export const Projects = () => {
                 />
               </AnimatePresence>
 
-              <button 
-                className="gallery-nav-btn next" 
+              <button
+                className="gallery-nav-btn next"
                 onClick={(e) => {
                   e.stopPropagation();
                   const imgs = getProjectImages(selectedProject?.folder);
@@ -265,11 +270,11 @@ export const Projects = () => {
                 <FiChevronRight />
               </button>
             </div>
-            
+
             <div className="thumbnail-strip-wrapper">
               <div className="thumbnail-strip">
                 {getProjectImages(selectedProject?.folder).map((img, idx) => (
-                  <div 
+                  <div
                     key={idx}
                     className={`thumbnail-item ${idx === activeImgIndex ? 'active' : ''}`}
                     onClick={() => setActiveImgIndex(idx)}
